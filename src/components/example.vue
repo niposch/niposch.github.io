@@ -14,5 +14,8 @@ const value = ref({
 </script>
 
 <template>
-  <RangeCalendar v-model="value" class="rounded-md border" />
+    <div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600">
+      <h1 class="text-5xl font-bold text-white mb-4">Under Construction 🚧</h1>
+      <p class="text-xl text-white mb-8">More content coming soon!</p>
+    </div>
 </template>
