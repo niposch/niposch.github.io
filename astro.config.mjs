@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import { fileURLToPath } from 'node:url';
+import { fileURLToPath } from 'url';
 import vue from '@astrojs/vue';
 
 import tailwind from '@astrojs/tailwind';

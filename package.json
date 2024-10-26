@@ -13,6 +13,7 @@
     "@astrojs/check": "^0.9.4",
     "@astrojs/tailwind": "^5.1.2",
     "@astrojs/vue": "^4.5.2",
+    "@types/node": "^22.8.1",
     "@vueuse/core": "^11.1.0",
     "astro": "^4.16.7",
     "class-variance-authority": "^0.7.0",
