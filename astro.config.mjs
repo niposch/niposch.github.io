@@ -7,6 +7,8 @@ import tailwind from '@astrojs/tailwind';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://niposch.github.io',
+  output: 'static',
   integrations: [
     vue(),
     tailwind({ 
