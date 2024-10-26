@@ -6,9 +6,10 @@ export default {
   safelist: ["dark"],
   prefix: "",
   
-    content: [
-      './src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}',
-    ],
+  content: [
+    './src/**/*.{astro,vue,js,jsx,ts,tsx}',
+    './@/**/*.{vue,js,jsx,ts,tsx}',
+  ],
   
   theme: {
     container: {
