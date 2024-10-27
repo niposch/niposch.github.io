@@ -15,7 +15,7 @@ const value = ref({
 
 <template>
     <div class="flex flex-col items-center justify-center min-h-screen bg-gradient-to-br from-blue-500 to-purple-600">
-      <h1 class="text-5xl font-bold text-white mb-4">Under Construction 🚧</h1>
-      <p class="text-xl text-white mb-8">More content coming soon!</p>
+      <h1 class="text-5xl font-bold text-white mb-4 text-center">Under Construction 🚧</h1>
+      <p class="text-xl text-white mb-8 text-center">More content coming soon!</p>
     </div>
 </template>
