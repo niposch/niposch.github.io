@@ -1,6 +1,7 @@
 ---
 import Project from "./Project.astro";
-const allPosts = await Astro.glob("../../pages/portfolio/projects/*.md");
+// TODO finished projects einpflegen
+const allPosts = [] as any[] // await Astro.glob("../../pages/portfolio/projects/*.md")
 // Sort by descending date (most recent first)
 allPosts.sort(
   (a, b) =>
