@@ -53,3 +53,21 @@ Verified `npm ci` from the updated lockfile, a 14-page production build with no
 diagnostics, zero npm audit vulnerabilities, and the page/layout/interaction
 and font-loading browser checks again. Restarted the development server at
 `http://127.0.0.1:4321/` after the clean install.
+
+## GitHub Pages publication — 2026-10-09
+
+The owner authorized publishing to the existing `niposch/niposch.github.io`
+repository. Pushed the approved site and dependency commits to
+`codex/homepage-direction` and fast-forwarded `master` to `0372ff3`.
+[Deployment run 37917495559](https://github.com/niposch/niposch.github.io/actions/runs/37917495559)
+completed successfully, including the clean install, production build, artifact
+upload, and Pages deployment.
+
+Verified the new homepage at https://niposch.de with normal certificate checks.
+The existing custom-domain certificate was approved; enabled Pages HTTPS
+enforcement and verified HTTP returns 301 to HTTPS. No DNS changes were needed.
+
+Live Chromium checks verified all 14 pages, locally served fonts/assets,
+keyboard scanner interaction, theme persistence across navigation, and mobile
+layouts without horizontal overflow. An unknown path returned the custom 404
+page with HTTP 404. No page JavaScript errors or failed assets were observed.
