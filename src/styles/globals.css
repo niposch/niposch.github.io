@@ -77,7 +77,8 @@ body{margin:0;background:var(--paper);color:var(--ink);}
 .site-shell .brand span{color:var(--accent);}
 .site-shell nav{align-items:center;}
 .site-shell nav a[aria-current="page"]{text-decoration:underline;text-underline-offset:6px;}
-.site-shell .theme-toggle{display:grid;place-items:center;border:1px solid var(--line);border-radius:50%;width:36px;height:36px;background:transparent;color:var(--ink);font:22px/1 Georgia,serif;cursor:pointer;}
+.site-shell .theme-toggle{display:grid;place-items:center;flex-shrink:0;appearance:none;padding:0;border:1px solid var(--line);border-radius:50%;width:36px;height:36px;background:transparent;color:var(--ink);cursor:pointer;}
+.site-shell .theme-toggle svg{display:block;}
 .site-shell .project-meta span{display:block;}
 .site-shell .project-meta a{line-height:1.6;}
 .site-shell .note-list{display:grid;gap:25px;}

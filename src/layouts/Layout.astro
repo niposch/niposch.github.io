@@ -43,7 +43,12 @@ const pageTitle = title === 'niposch' ? title : `${title} · niposch`;
           <a href="/notes/" aria-current={active.startsWith('/notes') ? 'page' : undefined}>Notes</a>
           <a href="/about/" aria-current={active.startsWith('/about') ? 'page' : undefined}>About</a>
           <a href="https://github.com/niposch" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch colour theme"><span aria-hidden="true">◐</span></button>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch colour theme">
+            <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false">
+              <path d="M10 2a8 8 0 0 0 0 16Z" fill="currentColor" />
+              <circle cx="10" cy="10" r="8" fill="none" stroke="currentColor" stroke-width="1.5" />
+            </svg>
+          </button>
         </nav>
       </header>
       <main id="main"><slot /></main>

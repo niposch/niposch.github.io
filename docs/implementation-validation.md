@@ -71,3 +71,16 @@ Live Chromium checks verified all 14 pages, locally served fonts/assets,
 keyboard scanner interaction, theme persistence across navigation, and mobile
 layouts without horizontal overflow. An unknown path returned the custom 404
 page with HTTP 404. No page JavaScript errors or failed assets were observed.
+
+## Mobile theme toggle alignment — 2026-10-09
+
+Reproduced a slight visible offset in the text-glyph icon at mobile widths in
+local Chromium. Default button padding also left less horizontal room than the
+glyph's line box required. Replaced the font glyph with a 20px inline SVG,
+removed button padding/native appearance, and prevented flex shrinking.
+
+At widths 320, 360, 390, 412, and 1120, the SVG's centre matches the button's
+centre in both axes. Light/dark screenshots were checked, Enter activation and
+pointer toggling passed, the saved theme survived navigation, and there was no
+horizontal overflow or page JavaScript error. The production build completed
+with zero diagnostics and generated all 14 pages.
