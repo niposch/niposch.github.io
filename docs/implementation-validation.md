@@ -35,3 +35,21 @@ cover the local source and build, not a deployment to niposch.de.
 GitHub Actions versions and Node 24 configuration were updated for an eventual
 master-branch deployment. The workflow has not been run remotely in this task.
 No push, deployment, DNS, or live service configuration change was made.
+
+## Dependency refresh — 2026-10-09
+
+After committing the approved site as `c98f1cd`, checked stable releases through
+the npm registry and refreshed the dependency lockfile with `npm update`.
+Astro 7.3.8, @astrojs/check 0.9.10, @astrojs/sitemap 3.7.4, and all three
+Fontsource packages at 5.3.0 were already current.
+
+Updated TypeScript from 5.9.3 to 6.0.3, the newest release supported by the
+current checker's `^5.0.0 || ^6.0.0` peer range. TypeScript 7.0.2 is newer but
+outside that range. Node type declarations remain on the Node 24 line used by
+the runtime. Other compatible updates include @types/estree 1.0.9,
+ansi-styles 6.2.3, and tslib 2.8.1, with indirect dependency deduplication.
+
+Verified `npm ci` from the updated lockfile, a 14-page production build with no
+diagnostics, zero npm audit vulnerabilities, and the page/layout/interaction
+and font-loading browser checks again. Restarted the development server at
+`http://127.0.0.1:4321/` after the clean install.

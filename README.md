@@ -18,6 +18,10 @@ Open http://127.0.0.1:4321/. Edits update automatically. If a dev server is
 already running, open that address rather than starting a second one. Stop it
 with `npm run astro -- dev stop` when needed.
 
+Before reinstalling dependencies on Windows, stop local Astro servers with
+`npm run astro -- dev stop` and `npm run astro -- preview stop` to release the
+native compiler files.
+
 | Command | Purpose |
 | --- | --- |
 | `npm run dev` | Start the local development server |
