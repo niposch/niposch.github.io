@@ -1,54 +1,60 @@
-# Astro Starter Kit: Basics
+# niposch.de
 
-```sh
-npm create astro@latest -- --template basics
+A personal homepage built with Astro, Markdown, and custom CSS. It builds to
+static HTML; the scanner illustration and theme switch use small browser scripts.
+Fonts are served locally. No database or CMS is required.
+
+## Run locally
+
+Use Node.js 24 (see `.nvmrc`; minimum supported version is 22.12).
+
+```powershell
+cd C:\Users\Nickp\Development\homelab\homepage-workshop
+npm ci
+npm run dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/basics)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/basics)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/basics/devcontainer.json)
+Open http://127.0.0.1:4321/. Edits update automatically. If a dev server is
+already running, open that address rather than starting a second one. Stop it
+with `npm run astro -- dev stop` when needed.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` | Start the local development server |
+| `npm run check` | Validate Astro and TypeScript |
+| `npm run build` | Validate and generate the static site in `dist/` |
+| `npm run preview` | Serve the production build locally |
 
-![just-the-basics](https://github.com/withastro/astro/assets/2244813/a0a5533c-a856-4198-8470-2d67b1d7c554)
+## Edit content
 
-## 🚀 Project Structure
+- `src/content/projects/*.md`: project summaries and project pages. `order` controls
+  the sequence; `featured: true` puts a project in the homepage's main list.
+- `src/content/notes/*.md`: posts. The title and summary appear in the notes index
+  and on the homepage; the Markdown body becomes the article.
+- `src/content/profile/about.md`: the full About page.
+- `src/pages/index.astro`: the short introduction and homepage About summary.
+- `src/styles/globals.css`: page spacing, colours, typography, and responsive layout.
+- `src/styles/fonts.css`: local font faces. Keep these files and the font preloads
+  in `src/layouts/Layout.astro` in sync when changing typefaces or weights.
+- `src/components/ScannerStudy.astro`: the interactive scanner backend showcase.
 
-Inside of your Astro project, you'll see the following folders and files:
+Set `draft: true` on a project or note to preview it locally while excluding it
+from production pages and indexes. The schema in `src/content.config.ts` checks
+frontmatter during development and builds. Slugs come from filenames; internal
+links should use those slugs.
 
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src/
-│   ├── components/
-│   │   └── Card.astro
-│   ├── layouts/
-│   │   └── Layout.astro
-│   └── pages/
-│       └── index.astro
-└── package.json
-```
+The selected order is TikTok feed filters, Scanner → Paperless, LTv Extended,
+and KRdp. MoniTopo appears as a smaller project marked in progress. The current
+notes cover TikTok filters, the scanner workflow, and administering a home
+network with a coding assistant. First-person copy is editable in Markdown.
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+`docs/` retains the earlier design explorations and editorial drafts. The live
+site content is in `src/content/`; the drafts in `docs/` are historical proposals.
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+## Hosting
 
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+`astro.config.mjs` sets the canonical site to https://niposch.de and generates a
+sitemap. GitHub Pages builds and deploys pushes to `master` through
+`.github/workflows/deploy.yml`, using Node 24. Local work on another branch does
+not publish the site. Review the content and the GitHub Pages custom-domain
+settings before a future deployment.

@@ -1,24 +1,8 @@
-// @ts-check
 import { defineConfig } from 'astro/config';
-import { fileURLToPath } from 'url';
-import vue from '@astrojs/vue';
-
-import tailwind from '@astrojs/tailwind';
-
-// https://astro.build/config
+import sitemap from '@astrojs/sitemap';
 export default defineConfig({
-  site: 'https://niposch.github.io',
+  site: 'https://niposch.de',
   output: 'static',
-  integrations: [
-    vue(),
-    tailwind({ 
-    })
-  ],
-  vite: {
-    resolve: {
-      alias: {
-        '@': fileURLToPath(new URL('./@', import.meta.url)),
-      },
-    },
-  }
+  integrations: [sitemap()],
+  markdown: { shikiConfig: { themes: { light: 'github-light', dark: 'github-dark' } } },
 });

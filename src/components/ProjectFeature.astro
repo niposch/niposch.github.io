@@ -1,0 +1,11 @@
+---
+import type { CollectionEntry } from 'astro:content';
+interface Props { project: CollectionEntry<'projects'>; numbered?: boolean; }
+const { project, numbered = true } = Astro.props;
+const { title, summary, stack, role, status, note, order } = project.data;
+---
+<article class="project-feature">
+  <div class="project-number" aria-hidden="true">{numbered ? String(order).padStart(2, '0') : '↗'}</div>
+  <div><h3><a href={`/projects/${project.id}/`}>{title}</a></h3><p>{summary}</p>{project.data.draft && <span class="draft-label">Draft preview</span>}</div>
+  <div class="project-meta"><span>{stack.join(' / ')}</span><span>{role}</span><span>{status}</span><a href={note ? `/notes/${note}/` : `/projects/${project.id}/`}>{note ? 'Read the post' : 'Project details'} ↗</a></div>
+</article>

@@ -1,24 +1,70 @@
 ---
-
-interface Props {
-	title: string;
-}
-
-const { title } = Astro.props;
-
+import dmSansRegular from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url';
+import dmSansMedium from '@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2?url';
+import spaceGrotesk from '@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2?url';
+import ibmPlexMono from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
+import '../styles/fonts.css';
+import '../styles/globals.css';
+interface Props { title: string; description?: string; }
+const { title, description = 'Personal software projects and notes by Nick, a software developer studying for a master’s.' } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const active = Astro.url.pathname;
+const pageTitle = title === 'niposch' ? title : `${title} · niposch`;
 ---
-
 <!doctype html>
-<html class="dark" lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
-	</head>
-	<body>
-		<slot />
-	</body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <meta name="color-scheme" content="light dark" />
+    {[dmSansRegular, dmSansMedium, spaceGrotesk, ibmPlexMono].map(font => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" />)}
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="canonical" href={canonical} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:type" content="website" />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      try {
+        const theme = localStorage.getItem('niposch-theme');
+        if (theme === 'light' || theme === 'dark') document.documentElement.dataset.theme = theme;
+      } catch {}
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="brand" href="/" aria-label="niposch homepage">niposch<span>.</span></a>
+        <nav aria-label="Main navigation">
+          <a href="/projects/" aria-current={active.startsWith('/projects') ? 'page' : undefined}>Projects</a>
+          <a href="/notes/" aria-current={active.startsWith('/notes') ? 'page' : undefined}>Notes</a>
+          <a href="/about/" aria-current={active.startsWith('/about') ? 'page' : undefined}>About</a>
+          <a href="https://github.com/niposch" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <button id="theme-toggle" class="theme-toggle" type="button" aria-label="Switch colour theme"><span aria-hidden="true">◐</span></button>
+        </nav>
+      </header>
+      <main id="main"><slot /></main>
+      <footer class="site-footer"><a href="https://github.com/niposch" target="_blank" rel="noopener noreferrer">github.com/niposch ↗</a><a href="/about/">About Nick</a></footer>
+    </div>
+    <script>
+      const button = document.querySelector<HTMLButtonElement>('#theme-toggle');
+      if (button) {
+        const isDark = () => document.documentElement.dataset.theme
+          ? document.documentElement.dataset.theme === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const updateLabel = () => button.setAttribute('aria-label', `Switch to ${isDark() ? 'light' : 'dark'} theme`);
+        updateLabel();
+        window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', updateLabel);
+        button.addEventListener('click', () => {
+          const theme = isDark() ? 'light' : 'dark';
+          document.documentElement.dataset.theme = theme;
+          try { localStorage.setItem('niposch-theme', theme); } catch {}
+          updateLabel();
+        });
+      }
+    </script>
+  </body>
 </html>

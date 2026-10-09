@@ -1,0 +1,10 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ProjectFeature from '../../components/ProjectFeature.astro';
+import { getProjects } from '../../lib/content';
+const projects = await getProjects();
+---
+<Layout title="Projects" description="Personal software projects by Nick: TikTok patches, scanner support, LTv Extended, KRdp, and other tools.">
+  <div class="page-intro"><h1>Projects</h1><p>Things I've made, changed, or am still working on.</p></div>
+  <section class="project-index" aria-label="Project list">{projects.map(project => <ProjectFeature project={project} numbered={project.data.featured} />)}</section>
+</Layout>

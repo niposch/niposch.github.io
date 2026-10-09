@@ -1,0 +1,168 @@
+<style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+#niposch-directions .study { --paper:light-dark(#f4f2eb,#171917); --ink:light-dark(#20251f,#e7e8df); --quiet:light-dark(#60665c,#aab1a2); --line:light-dark(#c8cec0,#444c40); --accent:light-dark(#254ad6,#a6b6ff); background:var(--paper);color:var(--ink);min-height:1280px;padding:32px 42px;box-sizing:border-box;font:15px/1.55 'DM Sans',sans-serif;overflow-wrap:anywhere; }
+#niposch-directions .study * {box-sizing:border-box;}
+#niposch-directions .study h1,#niposch-directions .study h2,#niposch-directions .study h3,#niposch-directions .study p {margin:0;font:inherit;color:inherit;}
+#niposch-directions .study a {color:inherit;text-decoration:none;}
+#niposch-directions .study a:hover {text-decoration:underline;text-underline-offset:5px;}
+#niposch-directions .study button {font:inherit;color:inherit;background:transparent;border:1px solid var(--line);padding:9px 14px;min-height:44px;}
+#niposch-directions .study header {display:flex;justify-content:space-between;align-items:center;gap:20px;padding-bottom:24px;border-bottom:1px solid var(--ink);}
+#niposch-directions .study nav {display:flex;flex-wrap:wrap;gap:22px;}
+#niposch-directions .brand {font:500 22px/1 'Space Grotesk',sans-serif;letter-spacing:-1px;}
+#niposch-directions .eyebrow {font:12px/1.6 'IBM Plex Mono',monospace;letter-spacing:.04em;text-transform:uppercase;color:var(--quiet);}
+#niposch-directions .hero {padding:50px 0 40px;display:grid;grid-template-columns:1.08fr .92fr;gap:34px;align-items:center;}
+#niposch-directions .study h1 {font:500 clamp(43px,6.5vw,72px)/1.02 'Space Grotesk',sans-serif;letter-spacing:-.06em;margin:20px 0 25px;}
+#niposch-directions .hero-copy {max-width:390px;color:var(--quiet);}
+#niposch-directions .intro-link {display:inline-block;margin-top:24px;border-bottom:1px solid var(--ink);padding-bottom:4px;}
+#niposch-directions .blueprint {background:var(--accent);color:light-dark(#f4f5ff,#172757);padding:24px;position:relative;min-height:315px;transform:rotate(-2deg);}
+#niposch-directions .blueprint .eyebrow {color:inherit;}
+#niposch-directions .blueprint::before {content:'';position:absolute;inset:0;background-image:linear-gradient(transparent 23px,color-mix(in srgb,currentColor 15%,transparent) 24px),linear-gradient(90deg,transparent 23px,color-mix(in srgb,currentColor 15%,transparent) 24px);background-size:24px 24px;pointer-events:none;}
+#niposch-directions .blueprint>* {position:relative;}
+#niposch-directions .monitor-layout {height:160px;position:relative;margin:18px 0;}
+#niposch-directions .monitor {position:absolute;border:2px solid currentColor;display:grid;place-items:center;font:12px 'IBM Plex Mono',monospace;transition:all .35s ease;}
+#niposch-directions .monitor::after {content:'';position:absolute;width:2px;height:14px;background:currentColor;bottom:-16px;}
+#niposch-directions .monitor.one {width:52%;height:88px;left:5%;top:40px;}
+#niposch-directions .monitor.two {width:28%;height:114px;left:63%;top:14px;}
+#niposch-directions .gaming .monitor.one {width:75%;height:103px;left:12%;top:28px;}
+#niposch-directions .gaming .monitor.two {opacity:0;transform:translateX(8px);}
+#niposch-directions .layout-caption {display:flex;align-items:center;justify-content:space-between;gap:12px;font:12px 'IBM Plex Mono',monospace;}
+#niposch-directions .blueprint button {border-color:currentColor;font:12px 'IBM Plex Mono',monospace;}
+#niposch-directions .section-heading {display:flex;justify-content:space-between;gap:20px;align-items:baseline;padding:22px 0 16px;border-top:1px solid var(--ink);}
+#niposch-directions .section-heading h2 {font:500 25px 'Space Grotesk',sans-serif;letter-spacing:-1px;}
+#niposch-directions .project-feature {display:grid;grid-template-columns:90px 1fr 210px;gap:20px;padding:22px 0 30px;align-items:start;}
+#niposch-directions .project-number {font:52px/1 'Instrument Serif',serif;color:var(--accent);}
+#niposch-directions .project-feature h3 {font:500 30px/1.1 'Space Grotesk',sans-serif;letter-spacing:-1px;margin:0 0 12px;}
+#niposch-directions .project-feature p {color:var(--quiet);max-width:420px;}
+#niposch-directions .project-meta {font:12px/1.8 'IBM Plex Mono',monospace;padding-top:4px;}
+#niposch-directions .project-meta a {display:inline-block;margin-top:15px;border-bottom:1px solid var(--ink);}
+#niposch-directions .project-list {border-top:1px solid var(--line);}
+#niposch-directions .project-row {display:grid;grid-template-columns:34px 1fr auto;gap:18px;padding:18px 0;border-bottom:1px solid var(--line);align-items:baseline;}
+#niposch-directions .project-row strong {font-weight:500;}
+#niposch-directions .project-row p {font-size:13px;color:var(--quiet);margin-top:4px;}
+#niposch-directions .project-row .row-index {font:12px 'IBM Plex Mono',monospace;color:var(--quiet);}
+#niposch-directions .small-note {display:grid;grid-template-columns:1fr 1fr;gap:35px;margin-top:32px;padding-top:20px;}
+#niposch-directions .small-note p {margin-top:9px;color:var(--quiet);font-size:13px;}
+#niposch-directions .notebook {--paper:light-dark(#eee9df,#25211e);--ink:light-dark(#342e27,#ede4d6);--quiet:light-dark(#716558,#b7a796);--line:light-dark(#cbbfac,#5b4b3c);--accent:light-dark(#a13d20,#ee9d7b);}
+#niposch-directions .notebook header {border-bottom:0;}
+#niposch-directions .notebook .brand {font:italic 29px 'Instrument Serif',serif;letter-spacing:0;}
+#niposch-directions .notebook .notebook-hero {display:grid;grid-template-columns:1fr 200px;gap:30px;margin:42px 0 44px;align-items:end;}
+#niposch-directions .notebook h1 {font:400 clamp(54px,8.5vw,89px)/.98 'Instrument Serif',serif;letter-spacing:-.03em;max-width:620px;margin:17px 0;}
+#niposch-directions .notebook h1 em {color:var(--accent);font-style:italic;}
+#niposch-directions .notebook .margin-note {font:12px/1.8 'IBM Plex Mono',monospace;border-left:1px solid var(--line);padding-left:16px;transform:rotate(3deg);color:var(--quiet);}
+#niposch-directions .notebook .spread {display:grid;grid-template-columns:1.15fr .85fr;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+#niposch-directions .notebook .spread-main {padding:26px 28px 26px 0;border-right:1px solid var(--line);}
+#niposch-directions .notebook .spread h2 {font:400 39px/1.05 'Instrument Serif',serif;margin:12px 0 18px;}
+#niposch-directions .notebook .spread p {color:var(--quiet);font-size:14px;}
+#niposch-directions .notebook .spread a {display:inline-block;margin-top:18px;border-bottom:1px solid var(--ink);}
+#niposch-directions .notebook .spread-side {padding:26px 0 26px 28px;display:flex;flex-direction:column;gap:28px;}
+#niposch-directions .notebook .spread-side h3 {font:400 26px/1.1 'Instrument Serif',serif;margin:8px 0;}
+#niposch-directions .notebook .encoding {font:22px 'IBM Plex Mono',monospace;padding:32px 12px;margin:0 0 24px;border:1px solid var(--line);text-align:center;position:relative;transform:rotate(-1deg);color:var(--accent);}
+#niposch-directions .notebook .encoding small {display:block;font:12px 'IBM Plex Mono',monospace;margin-top:14px;color:var(--quiet);}
+#niposch-directions .notebook .footnote {display:grid;grid-template-columns:1fr 1fr;gap:30px;padding:27px 0;}
+#niposch-directions .notebook .footnote h3 {font:400 25px 'Instrument Serif',serif;margin:8px 0;}
+#niposch-directions .notebook .footnote p {font-size:13px;color:var(--quiet);}
+#niposch-directions .instrument {--paper:light-dark(#e2e5dd,#151a18);--ink:light-dark(#1d302b,#e3e9df);--quiet:light-dark(#4e665b,#a1b1a5);--line:light-dark(#aab9ab,#415348);--accent:light-dark(#24664b,#b3e4b1);font-family:'IBM Plex Mono',monospace;}
+#niposch-directions .instrument header {font-size:12px;}
+#niposch-directions .instrument .brand {font:500 21px 'IBM Plex Mono',monospace;letter-spacing:-1px;}
+#niposch-directions .instrument .control-hero {display:grid;grid-template-columns:1fr .8fr;gap:40px;align-items:end;margin:38px 0;}
+#niposch-directions .instrument h1 {font:500 clamp(44px,6.7vw,72px)/1.03 'Space Grotesk',sans-serif;letter-spacing:-.06em;margin:19px 0;}
+#niposch-directions .instrument .topology {border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:24px 0;color:var(--accent);}
+#niposch-directions .instrument .topology p {font-size:12px;line-height:1.9;}
+#niposch-directions .instrument .topology strong {font-weight:500;display:block;font-size:16px;margin:8px 0 15px;}
+#niposch-directions .instrument .index-heading {display:flex;justify-content:space-between;gap:15px;padding:17px 0;border-top:1px solid var(--ink);font-size:12px;}
+#niposch-directions .instrument .work-item {display:grid;grid-template-columns:45px 1fr 150px;gap:20px;border-top:1px solid var(--line);padding:25px 0;}
+#niposch-directions .instrument .work-item h2 {font:500 29px/1.1 'Space Grotesk',sans-serif;letter-spacing:-1px;margin-bottom:10px;}
+#niposch-directions .instrument .work-item p {font-size:12px;color:var(--quiet);max-width:440px;}
+#niposch-directions .instrument .work-item .serial {font-size:12px;color:var(--accent);padding-top:5px;}
+#niposch-directions .instrument .work-item .tag {font-size:11px;letter-spacing:.04em;text-transform:uppercase;text-align:right;}
+#niposch-directions .instrument .closing {margin-top:28px;border-top:1px solid var(--ink);padding-top:23px;display:flex;justify-content:space-between;gap:25px;font-size:12px;color:var(--quiet);}
+@media(max-width:680px){
+ #niposch-directions .study {padding:24px;min-height:1900px;}
+ #niposch-directions .hero {grid-template-columns:1fr;padding-top:30px;gap:25px;}
+ #niposch-directions .blueprint {min-height:285px;transform:rotate(-1deg);}
+ #niposch-directions .study nav {gap:14px;font-size:12px;}
+ #niposch-directions .study header {align-items:start;}
+ #niposch-directions .project-feature {grid-template-columns:48px 1fr;gap:15px;}
+ #niposch-directions .project-meta {grid-column:2;}
+ #niposch-directions .project-number {font-size:42px;}
+ #niposch-directions .small-note {grid-template-columns:1fr;gap:20px;}
+ #niposch-directions .notebook .notebook-hero {grid-template-columns:1fr;margin:30px 0;gap:15px;}
+ #niposch-directions .notebook .margin-note {transform:none;}
+ #niposch-directions .notebook .spread {grid-template-columns:1fr;}
+ #niposch-directions .notebook .spread-main {border-right:0;padding-right:0;}
+ #niposch-directions .notebook .spread-side {border-top:1px solid var(--line);padding-left:0;}
+ #niposch-directions .notebook .footnote {grid-template-columns:1fr;gap:20px;}
+ #niposch-directions .instrument .control-hero {grid-template-columns:1fr;gap:15px;}
+ #niposch-directions .instrument .work-item {grid-template-columns:27px 1fr;gap:12px;}
+ #niposch-directions .instrument .work-item .tag {grid-column:2;text-align:left;}
+ #niposch-directions .instrument .closing {flex-direction:column;gap:12px;}
+}
+@media(max-width:350px){#niposch-directions .study{min-height:2120px;}}
+@media(prefers-reduced-motion:reduce){#niposch-directions .monitor{transition:none;}}
+</style>
+<div id="niposch-directions" class="viz-carousel" aria-label="Homepage design directions">
+ <section data-variant="Workshop" aria-label="Workshop homepage design">
+  <div class="study workshop" aria-label="Workshop design">
+   <header><a class="brand" href="https://github.com/niposch" target="_blank" rel="noopener">niposch<span style="color:var(--accent)">.</span></a><nav aria-label="Workshop navigation"><a href="#workshop-work">Work</a><a href="#workshop-notes">Notes</a><a href="https://github.com/niposch" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+   <div class="hero">
+    <div><div class="eyebrow">Nick / software &amp; small obsessions</div><h1>Some things<br>should work<br>a little better.</h1><p class="hero-copy">So I build tools, take things apart, and write down what I learn. Windows utilities, TV interfaces, and the occasional stubborn scanner.</p><a class="intro-link" href="#workshop-work">Take a look around ↓</a></div>
+    <div class="blueprint" aria-label="Illustrated monitor configurations"><div class="eyebrow">MoniTopo / configuration study</div><div class="monitor-layout"><div class="monitor one">DISPLAY 01</div><div class="monitor two">02</div></div><div class="layout-caption"><span class="profile-name" aria-live="polite">DESK PROFILE</span><button type="button" class="cursor-interaction layout-switch">Switch layout ↔</button></div></div>
+   </div>
+   <div id="workshop-work" class="section-heading"><h2>Selected work</h2><span class="eyebrow">A few useful rabbit holes</span></div>
+   <article class="project-feature"><div class="project-number">01</div><div><h3>MoniTopo</h3><p>Save an entire Windows display setup. Switch it from the tray or a hotkey. Resolution, position, refresh rate, scaling, and HDR included.</p></div><div class="project-meta">Windows utility<br>C# / .NET<br>In development<br><a href="https://github.com/niposch/MoniTopo" target="_blank" rel="noopener">Explore the project ↗</a></div></article>
+   <div class="project-list">
+    <a class="project-row" href="https://github.com/niposch/LTvLauncher-Extended" target="_blank" rel="noopener"><span class="row-index">02</span><div><strong>LTv Extended</strong><p>An Android TV launcher fork, refined for my living room.</p></div><span aria-hidden="true">↗</span></a>
+    <a class="project-row" href="https://github.com/niposch/apply_patch-multiple-encodings" target="_blank" rel="noopener"><span class="row-index">03</span><div><strong>Encoding-aware patches</strong><p>Change the code. Preserve the bytes that don't need changing.</p></div><span aria-hidden="true">↗</span></a>
+    <a class="project-row" href="https://github.com/niposch/brscan-ads-2100e" target="_blank" rel="noopener"><span class="row-index">04</span><div><strong>A second life for a Brother scanner</strong><p>Experimental open-source ADS-2100e support on Linux.</p></div><span aria-hidden="true">↗</span></a>
+   </div>
+   <div id="workshop-notes" class="small-note"><div><div class="eyebrow">From the workbench</div><p>Things I could write about: legacy encodings, TV focus navigation, and the bytes inside a duplex scan.</p></div><div><div class="eyebrow">A bit about me</div><p>I'm Nick. This is a home for the software I make and the problems I keep coming back to.</p></div></div>
+  </div>
+ </section>
+ <section data-variant="Fieldnotes" aria-label="Fieldnotes homepage design" hidden>
+  <div class="study notebook" aria-label="Fieldnotes design">
+   <header><a class="brand" href="https://github.com/niposch" target="_blank" rel="noopener">Nick's fieldnotes</a><nav aria-label="Fieldnotes navigation"><a href="#fieldnotes-work">Projects</a><a href="#fieldnotes-notes">Notebook</a><a href="https://github.com/niposch" target="_blank" rel="noopener">GitHub ↗</a></nav></header>
+   <div class="notebook-hero"><div><div class="eyebrow">Software, devices, and loose ends</div><h1>A collection of<br><em>useful detours.</em></h1><p class="hero-copy">I'm Nick. I make software for the little things that get in the way—and sometimes follow the problem much further than planned.</p></div><aside class="margin-note">Currently in the notebook:<br><br>Windows displays<br>Living-room software<br>Old tools, new problems</aside></div>
+   <div id="fieldnotes-work" class="spread">
+    <article class="spread-main"><div class="eyebrow">Tools / Rust / CLI + MCP</div><h2>The patch shouldn't<br>rewrite the whole file.</h2><div class="encoding" aria-label="Windows-1252 encoding example">ö <span aria-hidden="true">→</span> F6<small>One character. One byte. Windows-1252.</small></div><p>A small tool for a surprisingly persistent problem: editing legacy source without converting its encoding or changing untouched bytes.</p><a href="https://github.com/niposch/apply_patch-multiple-encodings" target="_blank" rel="noopener">Encoding-aware patches ↗</a></article>
+    <div class="spread-side"><article><div class="eyebrow">Windows / C#</div><h3>The desk, remembered.</h3><p>MoniTopo saves and switches whole display configurations. A work in progress for the setups Windows makes tedious.</p><a href="https://github.com/niposch/MoniTopo" target="_blank" rel="noopener">MoniTopo ↗</a></article><article><div class="eyebrow">Android TV / fork</div><h3>A quieter home screen.</h3><p>LTv Extended builds on an open-source launcher, with upstream work credited and improvements made for daily use.</p><a href="https://github.com/niposch/LTvLauncher-Extended" target="_blank" rel="noopener">LTv Extended ↗</a></article></div>
+   </div>
+   <div id="fieldnotes-notes" class="footnote"><article><div class="eyebrow">More from the shelf</div><h3>Keeping older tools useful.</h3><p>A VB6 designer fix. An experimental Brother scanner driver. Small changes that make familiar hardware and software easier to keep using.</p></article><article><div class="eyebrow">Behind the projects</div><h3>The interesting part is why.</h3><p>Future notes can cover the first broken assumption, the debugging process, and what I would do differently.</p></article></div>
+  </div>
+ </section>
+ <section data-variant="Instrument" aria-label="Instrument homepage design" hidden>
+  <div class="study instrument" aria-label="Instrument design">
+   <header><a class="brand" href="https://github.com/niposch" target="_blank" rel="noopener">NIPOSCH /</a><nav aria-label="Instrument navigation"><a href="#instrument-work">PROJECT INDEX</a><a href="https://github.com/niposch" target="_blank" rel="noopener">SOURCE ↗</a></nav></header>
+   <div class="control-hero"><div><div class="eyebrow">Personal software / by Nick</div><h1>Find the friction.<br>Make the tool.</h1><p class="hero-copy">Utilities, interfaces, and experiments built around the way I use my own machines.</p></div><div class="topology" aria-label="Illustrated scanner pipeline"><div class="eyebrow">One path through the workbench</div><strong>Paper → USB → pixels</strong><p>Brother ADS-2100e<br>↓<br>Open-source SANE backend<br>↓<br>Document workflow</p></div></div>
+   <div id="instrument-work" class="index-heading"><span>PROJECT INDEX</span><span>SELECTED / PUBLIC SOURCE</span></div>
+   <a class="work-item" href="https://github.com/niposch/MoniTopo" target="_blank" rel="noopener"><span class="serial">01</span><div><h2>MoniTopo</h2><p>Save and activate Windows display profiles. Topology, resolution, scale, HDR.</p></div><span class="tag">C# / Windows<br>In development ↗</span></a>
+   <a class="work-item" href="https://github.com/niposch/LTvLauncher-Extended" target="_blank" rel="noopener"><span class="serial">02</span><div><h2>LTv Extended</h2><p>An Android TV launcher fork. Remote navigation, rendering, and release improvements.</p></div><span class="tag">Flutter / Android<br>Maintained fork ↗</span></a>
+   <a class="work-item" href="https://github.com/niposch/apply_patch-multiple-encodings" target="_blank" rel="noopener"><span class="serial">03</span><div><h2>Encoding-aware patches</h2><p>A patch CLI and MCP server that preserves untouched bytes in legacy source files.</p></div><span class="tag">Rust / tooling<br>CLI + MCP ↗</span></a>
+   <a class="work-item" href="https://github.com/niposch/vb6-designer-fix" target="_blank" rel="noopener"><span class="serial">04</span><div><h2>VB6 Designer Fix</h2><p>Bring visible movement and resize outlines back to an older IDE.</p></div><span class="tag">C++ / Win32<br>IDE add-in ↗</span></a>
+   <a class="work-item" href="https://github.com/niposch/brscan-ads-2100e" target="_blank" rel="noopener"><span class="serial">05</span><div><h2>brscan / ADS-2100e</h2><p>Experimental Linux scanner support: duplex streams, page boundaries, and JPEG decoding.</p></div><span class="tag">C / Linux<br>Experimental fork ↗</span></a>
+   <footer class="closing"><span>Built out of curiosity.<br>Documented for the next person.</span><a href="https://github.com/niposch" target="_blank" rel="noopener">MORE ON GITHUB ↗</a></footer>
+  </div>
+ </section>
+</div>
+<script>
+(() => {
+ const root = document.getElementById('niposch-directions');
+ const board = root.querySelector('.blueprint');
+ const button = board.querySelector('.layout-switch');
+ const caption = board.querySelector('.profile-name');
+ button.addEventListener('click', () => {
+  const gaming = board.classList.toggle('gaming');
+  caption.textContent = gaming ? 'SINGLE DISPLAY PROFILE' : 'DESK PROFILE';
+ });
+ if (globalThis.Tweak) {
+  const settings = { accent: '#254ad6', spacing: 42 };
+  const workshop = root.querySelector('.workshop');
+  const controls = new Tweak({ container: workshop, onChange: () => {
+   workshop.style.setProperty('--accent', settings.accent);
+   workshop.style.paddingLeft = settings.spacing + 'px';
+   workshop.style.paddingRight = settings.spacing + 'px';
+  }});
+  controls.addColorPicker(settings, 'accent', { label: 'Workshop accent', reference: '--accent' });
+  controls.addSlider(settings, 'spacing', { label: 'Page margin', min: 20, max: 54, unit: 'px' });
+ }
+})();
+</script>

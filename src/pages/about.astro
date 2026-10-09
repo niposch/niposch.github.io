@@ -1,0 +1,10 @@
+---
+import { getEntry, render } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+const about = await getEntry('profile', 'about');
+if (!about) throw new Error('Missing src/content/profile/about.md');
+const { Content } = await render(about);
+---
+<Layout title={about.data.title} description={about.data.summary}>
+  <article class="article-page"><div class="page-intro"><h1>{about.data.title}</h1></div><div class="prose"><Content /></div><a class="intro-link" href="https://github.com/niposch" target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a></article>
+</Layout>

@@ -1,22 +1,40 @@
 ---
-import '../styles/globals.css';
 import Layout from '../layouts/Layout.astro';
-import Example from '../components/example.vue';
-
+import ScannerStudy from '../components/ScannerStudy.astro';
+import ProjectFeature from '../components/ProjectFeature.astro';
+import { getProjects, getNotes } from '../lib/content';
+const projects = await getProjects();
+const notes = await getNotes();
 ---
-
-<Layout title="Under Construction">
-	<main>
-		<Example />
-	</main>
+<Layout title="niposch">
+  <section class="hero" aria-labelledby="intro-title">
+    <div>
+      <h1 id="intro-title">Hi,<br />I'm Nick.</h1>
+      <div class="hero-copy">
+        <p>I've been developing software professionally for five years alongside my studies, mostly with .NET and Angular.</p>
+        <p>I'm now working towards my master's. Here are some projects I work on and use myself.</p>
+      </div>
+      <a class="intro-link" href="#projects">Projects ↓</a>
+    </div>
+    <ScannerStudy />
+  </section>
+  <section id="projects" aria-labelledby="projects-title">
+    <div class="section-heading"><h2 id="projects-title">Projects</h2></div>
+    {projects.filter(p => p.data.featured).map(project => <ProjectFeature project={project} />)}
+    <div class="other-work"><span>Other projects:</span>{projects.filter(p => !p.data.featured).map(project => <a href={`/projects/${project.id}/`}>{project.data.title}{project.data.status === 'In progress' ? ' (in progress)' : ''} ↗</a>)}</div>
+  </section>
+  <div class="notes-about">
+    <section aria-labelledby="notes-title">
+      <h2 id="notes-title"><a href="/notes/">Notes</a></h2>
+      <div class="note-list">
+        {notes.map(note => <article><h3 class="note-title"><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3><p>{note.data.summary}</p>{note.data.draft && <span class="draft-label">Draft preview</span>}</article>)}
+      </div>
+    </section>
+    <section class="about" aria-labelledby="about-title">
+      <h2 id="about-title"><a href="/about/">About me</a></h2>
+      <p>I work as a software developer alongside my studies—a Werkstudent. I have a bachelor's degree and am currently working towards a master's.</p>
+      <p>My professional work has mostly involved .NET, Angular, and VB6, with Azure DevOps for pipelines and Playwright and Vitest for testing.</p>
+      <a class="intro-link" href="/about/">More about me ↗</a>
+    </section>
+  </div>
 </Layout>
-
-<head>
-	<meta property="og:title" content="Under Construction" />
-	<meta property="og:description" content="More content coming soon!" />
-	<!-- <meta property="og:image" content="https://niposch.github.io/og-image.png" />
-	<meta property="og:url" content="https://niposch.de" /> -->
-	<meta property="og:type" content="website" />
-</head>
-
-<style></style>

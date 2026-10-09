@@ -1,0 +1,30 @@
+<aside class="blueprint" aria-labelledby="scanner-showcase-title">
+  <h2 id="scanner-showcase-title" class="blueprint-title">Making my scanner work on Linux.</h2>
+  <p class="blueprint-intro">I extended an open-source SANE backend to support my Brother ADS-2100e.</p>
+  <div class="scan-path">
+    <button type="button" class="scan-step active" aria-pressed="true"><span class="scan-number" aria-hidden="true">01</span><span><strong>USB data</strong><small>Read the scanner's stream</small></span></button>
+    <button type="button" class="scan-step" aria-pressed="false"><span class="scan-number" aria-hidden="true">02</span><span><strong>Duplex pages</strong><small>Separate front and back</small></span></button>
+    <button type="button" class="scan-step" aria-pressed="false"><span class="scan-number" aria-hidden="true">03</span><span><strong>JPEG decoding</strong><small>Return RGB images to SANE</small></span></button>
+  </div>
+  <div class="diagram-footer"><span class="scan-caption" aria-live="polite">Handle USB records and page endings to return a complete image.</span></div>
+  <a class="blueprint-project-link" href="/projects/scanner-to-paperless/">About the scanner project ↗</a>
+</aside>
+<script>
+  const board = document.querySelector('.blueprint');
+  if (board) {
+    const steps = [...board.querySelectorAll<HTMLButtonElement>('.scan-step')];
+    const label = board.querySelector('.scan-caption');
+    const captions = [
+      'Handle USB records and page endings to return a complete image.',
+      'Separate interleaved front and back data into complete pages.',
+      'Decode compressed colour data into RGB pixels for scanning applications.',
+    ];
+    steps.forEach((button, selected) => button.addEventListener('click', () => {
+      steps.forEach((step, index) => {
+        step.classList.toggle('active', index === selected);
+        step.setAttribute('aria-pressed', String(index === selected));
+      });
+      if (label) label.textContent = captions[selected] ?? '';
+    }));
+  }
+</script>
