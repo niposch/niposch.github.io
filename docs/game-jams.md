@@ -19,3 +19,9 @@ Each fork deploys its own GitHub Pages project site at `/ludum-dare-54/`, `/ludu
 LD54's previous page returned HTTP 200 but failed before startup with missing cross-origin isolation and SharedArrayBuffer. This was reproduced in Chromium; HTTP success alone had not established game startup. The new workflow replaces the old `gh-pages` publication and keeps that historical branch. LD55 now runs from Nick’s fork instead of sending visitors to itch.io. LD56 also has its own-fork destination, preserving the working prototype.
 
 The earlier [publisher directory](https://panor.itch.io/) discovery remains contribution context; the itch.io detail page encountered automated Cloudflare verification. Publication here does not claim a full completion playthrough, physical controller testing or mobile compatibility for these jam games.
+
+## Publication verification
+
+Successful runtime deployments on 18 October 2026: LD54 `47ffade` (run `39165016353`), LD55 `dec696e` (run `39165017839`) and LD56 `9aec4f1` (run `39165129400`). Chromium checks reached LD54's menu, opening letter, tutorial and card preview; Footlong Flight's menu and gameplay; and LD56's level selector and Level 1. LD54/55 had no errors during the final exercised paths. LD56 retains the prototype's empty-Tween diagnostics; it is deliberately presented as unfinished. Exported assets use revision-specific names after a real browser check exposed cached legacy JavaScript on LD54.
+
+The homepage build passed with zero errors, warnings or hints and generated 16 pages. Revision `1946305` deployed in successful run `39165065433`; the public directory was checked for consistent labels, exact game/fork destinations and the unfinished-jam note. Follow-up documentation changes do not change runtime behavior.
