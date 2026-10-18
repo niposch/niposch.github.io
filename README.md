@@ -62,3 +62,7 @@ sitemap. GitHub Pages builds and deploys pushes to `master` through
 `.github/workflows/deploy.yml`, using Node 24. Local work on another branch does
 not publish the site. Review the content and the GitHub Pages custom-domain
 settings before a future deployment.
+
+## Live-project directory
+
+`/live/` collects direct browser entry points, linked from the main navigation, homepage introduction and Projects index. Edit `src/data/live-projects.ts` to add or update a tool, game or demo; include its direct URL, source and any demo limitations. The page is independent of project articles and notes.
