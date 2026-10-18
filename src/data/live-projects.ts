@@ -27,6 +27,20 @@ export const liveProjects = [
     detail: 'Play the game-jam browser build.', action: 'Play game',
   },
   {
+    title: 'Footlong Flight', kind: 'Game · Ludum Dare 55',
+    description: 'Feed hungry wizards in this collaborative game-jam entry.',
+    href: 'https://panor.itch.io/footlong-flight', source: 'https://github.com/panorb/ludum-dare-55',
+    detail: 'Team project with my contributions. Browser build hosted on itch.io.',
+    action: 'Play game',
+  },
+  {
+    title: 'Ludum Dare 56', kind: 'Game · Team prototype',
+    description: 'Turn tiny creatures into ingredients for a witch’s cauldron in this potion-brewing prototype.',
+    href: 'https://panorb.github.io/ludum-dare-56/', source: 'https://github.com/panorb/ludum-dare-56',
+    detail: 'A collaborative jam entry. Select a level to start playing.',
+    action: 'Play prototype',
+  },
+  {
     title: 'Wake-on-LAN Web Manager', kind: 'Demo',
     description: 'Explore the dashboard of a self-hosted tool for managing and waking devices on a local network.',
     href: '/wake-on-lan-web/', source: 'https://github.com/niposch/wake-on-lan-web',

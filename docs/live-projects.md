@@ -9,3 +9,5 @@ The existing converter post from revision `1f8047e` was preserved by fast-forwar
 Validation: `npm run build` passed with zero errors, warnings or hints and generated 16 pages. Reviewed desktop dark mode, a 390 px single-column viewport, the mobile navigation grid, direct application links and source destinations. The four existing app destinations returned HTTP 200; the parking game is deployed separately from its new repository. The page uses existing site fonts, colors and themes without adding dependencies. Physical mobile testing is not claimed.
 
 Publish by pushing to `master`; the existing GitHub Pages workflow builds the site. The game and other project-site paths are separate Pages deployments, so no game files belong in this repository and no DNS or Caddy changes are required.
+
+Added the verified LD55 and LD56 collaborations after inspecting Panorb’s public histories. See [game-jam evidence and play-test scope](game-jams.md). These entries link to the existing publisher deployments and credit the team; they are not republished copies.
