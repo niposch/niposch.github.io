@@ -47,8 +47,9 @@ from production pages and indexes. The schema in `src/content.config.ts` checks
 frontmatter during development and builds. Slugs come from filenames; internal
 links should use those slugs.
 
-The selected order is TikTok feed filters, Scanner → Paperless, LTv Extended,
-and KRdp. MoniTopo appears as a smaller project marked in progress. The current
+The selected order is TikTok feed filters, Scanner → Paperless, MoniTopo,
+LTv Extended, and KRdp. MoniTopo's article covers the released Windows app;
+its example-profile screenshots are in `public/images/monitopo/`. The current
 notes cover TikTok filters, the scanner workflow, and administering a home
 network with a coding assistant. First-person copy is editable in Markdown.
 
