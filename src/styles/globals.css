@@ -16,16 +16,6 @@
 .site-shell .blueprint>*{position:relative;}
 .site-shell h2.blueprint-title{font:500 30px/1.12 'Space Grotesk',sans-serif;letter-spacing:-1px;margin:0 0 12px;}
 .site-shell .blueprint-intro{font:14px/1.6 'DM Sans',sans-serif;max-width:38ch;}
-.site-shell .scan-path{display:flex;flex-direction:column;gap:14px;padding:23px 0 18px;}
-.site-shell .scan-step{position:relative;isolation:isolate;display:grid;grid-template-columns:30px 1fr;align-items:center;gap:14px;width:100%;padding:12px;border:1px solid transparent;color:inherit;background:transparent;text-align:left;font:inherit;}
-.site-shell .scan-step::before{content:'';position:absolute;z-index:-1;inset:-1px;border:1px solid color-mix(in srgb,currentColor 65%,transparent);background:var(--accent);transition:inset .18s ease,background-color .18s ease;}
-.site-shell .scan-step.active::before{border-color:currentColor;background:color-mix(in srgb,var(--accent) 90%,currentColor);}
-@media(hover:hover){.site-shell .scan-step:hover::before{inset:-4px;border-color:currentColor;background:color-mix(in srgb,var(--accent) 85%,currentColor);}}
-.site-shell .scan-step strong{font:500 18px/1.2 'Space Grotesk',sans-serif;display:block;}
-.site-shell .scan-step small{font:11px/1.5 'IBM Plex Mono',monospace;display:block;margin-top:5px;}
-.site-shell .scan-number{font:20px Georgia,serif;}
-.site-shell .diagram-footer{display:flex;align-items:center;justify-content:space-between;gap:14px;font:11px/1.5 'IBM Plex Mono',monospace;}
-.site-shell .scan-caption{min-height:4.5em;}
 .site-shell .blueprint-project-link{display:inline-block;margin-top:5px;font:12px/1.5 'IBM Plex Mono',monospace;border-bottom:1px solid currentColor;padding-bottom:3px;}
 .site-shell .section-heading{border-top:1px solid var(--ink);padding:24px 0 10px;}
 .site-shell .section-heading h2{font:500 28px/1.1 'Space Grotesk',sans-serif;letter-spacing:-1px;}
@@ -61,10 +51,8 @@
  .site-shell .project-number{font-size:40px;}
  .site-shell .project-meta{grid-column:2;}
  .site-shell .notes-about{grid-template-columns:1fr;gap:30px;}
- .site-shell .diagram-footer{align-items:start;}
 }
-@media(max-width:350px){.site-shell h1{font-size:58px;}.site-shell .diagram-footer{flex-direction:column;gap:12px;}.site-shell .project-feature h3{font-size:24px;}}
-@media(prefers-reduced-motion:reduce){.site-shell .scan-step::before{transition:none;}}
+@media(max-width:350px){.site-shell h1{font-size:58px;}.site-shell .project-feature h3{font-size:24px;}}
 
 :root{color-scheme:light dark;--paper:light-dark(#f4f2eb,#171917);--ink:light-dark(#20251f,#e7e8df);--quiet:light-dark(#60665c,#aab1a2);--line:light-dark(#c8cec0,#444c40);--accent:light-dark(#254ad6,#a6b6ff);}
 :root[data-theme="light"]{color-scheme:light;}

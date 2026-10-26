@@ -1,6 +1,6 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import ScannerStudy from '../components/ScannerStudy.astro';
+import SecondScrnStudy from '../components/SecondScrnStudy.astro';
 import ProjectFeature from '../components/ProjectFeature.astro';
 import { getProjects, getNotes } from '../lib/content';
 const projects = await getProjects();
@@ -16,7 +16,7 @@ const notes = await getNotes();
       </div>
       <div class="hero-links"><a class="intro-link" href="/live/">Try live projects ↗</a><a class="intro-link" href="#projects">Projects ↓</a></div>
     </div>
-    <ScannerStudy />
+    <SecondScrnStudy />
   </section>
   <section id="projects" aria-labelledby="projects-title">
     <div class="section-heading"><h2 id="projects-title">Projects</h2></div>

@@ -1,0 +1,98 @@
+<aside class="blueprint secondscrn-study" aria-labelledby="secondscrn-title" data-stage="display">
+  <div class="release-label">SecondScrn / v0.0.1</div>
+  <h2 id="secondscrn-title" class="blueprint-title">My tablet is a Windows monitor now.</h2>
+  <p class="blueprint-intro">SecondScrn puts an extra Windows desktop on my Android tablet. Touch and pen input go back to the PC.</p>
+  <svg class="display-diagram" viewBox="0 0 360 170" role="img" aria-labelledby="display-diagram-title display-diagram-desc">
+    <title id="display-diagram-title">SecondScrn connects a Windows PC and an Android tablet</title>
+    <desc id="display-diagram-desc">A Windows PC shows a code editor; an Android tablet shows a separate drawing window on the extended desktop. Both screens have Windows-style taskbars. Encrypted video goes to the tablet, and touch and pen input return to the PC.</desc>
+    <g class="device" fill="none" stroke="currentColor" stroke-width="1.5">
+      <rect x="8" y="15" width="144" height="96" rx="4" />
+      <path d="M64 111v15m32-15v15m-48 0h64" />
+      <rect x="216" y="30" width="136" height="92" rx="9" />
+      <path d="M225 39h118v74H225z" />
+      <circle cx="220" cy="76" r="1" fill="currentColor" stroke="none" />
+    </g>
+    <!-- Different apps on the two screens make the extended desktop visible. -->
+    <g class="desktop" stroke="currentColor" stroke-width="1" fill="none">
+      <path d="M16 23h128v80H16z" fill="currentColor" fill-opacity=".06" stroke="none" />
+      <path d="M21 79c20-45 47 32 73-27s42-22 48-24M227 95c25-48 44 18 71-28s30-9 42-13" opacity=".15" stroke-width="10" />
+      <rect x="24" y="29" width="110" height="59" rx="2" fill="var(--accent)" />
+      <path d="M24 40h110m-16-6h4m4-1 3 3m0-3-3 3M45 40v48" />
+      <path d="M29 47h10m-10 6h7m-7 6h9m-9 6h6" opacity=".45" />
+      <path d="m56 48-4 4 4 4m17-8 4 4-4 4m-7-9-4 10M55 65h34m-28 6h48m-54 6h26" stroke-width="1.5" />
+      <rect x="233" y="45" width="102" height="55" rx="2" fill="var(--accent)" />
+      <path d="M233 56h102m-16-6h4m4-1 3 3m0-3-3 3M245 56v44" />
+      <path d="M238 62h3m-3 6h3m-3 6h3m-3 6h3" stroke-width="2" />
+      <path d="M254 87c-5-23 16-29 23-12s14 17 21 2 12-9 18-7" stroke-width="2" />
+      <!-- Windows 11-style centered Start buttons, pinned apps and system trays. -->
+      <path d="M16 91h128v12H16zM226 102h116v10H226z" fill="currentColor" fill-opacity=".15" stroke="none" />
+      <path d="M16 91h128m82 11h116" opacity=".5" />
+      <g fill="currentColor" stroke="none">
+        <path d="M56 94h3v3h-3zm4 0h3v3h-3zm-4 4h3v3h-3zm4 0h3v3h-3zM262 104h2.5v2.5H262zm3.5 0h2.5v2.5h-2.5zm-3.5 3.5h2.5v2.5H262zm3.5 0h2.5v2.5h-2.5z" />
+        <rect x="82" y="94" width="7" height="7" rx="1" opacity=".65" />
+        <rect x="94" y="94" width="7" height="7" rx="1" opacity=".4" />
+        <rect x="284" y="104" width="6" height="6" rx="1" opacity=".65" />
+        <rect x="295" y="104" width="6" height="6" rx="1" opacity=".4" />
+      </g>
+      <circle cx="72" cy="97" r="2.5" /><path d="m74 99 2 2" />
+      <circle cx="276" cy="107" r="2" /><path d="m278 109 1 1" />
+      <path d="m121 98 2-2 2 2m3-3h10m-7 4h7m186 8 2-2 2 2m3-2h8m-6 3h6" opacity=".6" />
+    </g>
+    <g class="video-layer" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M153 56h54m-6-5 6 5-6 5" />
+      <rect x="167" y="47" width="10" height="18" rx="2" fill="var(--accent)" />
+      <rect x="183" y="47" width="10" height="18" rx="2" fill="var(--accent)" />
+    </g>
+    <g class="input-layer" fill="none" stroke="currentColor" stroke-width="1.5">
+      <path d="M214 95h-53m6-5-6 5 6 5" stroke-dasharray="3 3" />
+      <path d="m313 92 20-27 5 4-20 27-8 5z" fill="var(--accent)" />
+      <circle cx="258" cy="87" r="4" />
+      <path d="M251 87a7 7 0 0 1 7-7" />
+    </g>
+    <g fill="currentColor" class="device-labels">
+      <text x="80" y="151" text-anchor="middle">Windows PC</text>
+      <text x="284" y="151" text-anchor="middle">Extended desktop</text>
+    </g>
+  </svg>
+  <div class="stream-stages" role="group" aria-label="Explore how SecondScrn works">
+    <button type="button" aria-pressed="true" data-stage="display" aria-controls="stream-caption">01 Display</button>
+    <button type="button" aria-pressed="false" data-stage="video" aria-controls="stream-caption">02 Video</button>
+    <button type="button" aria-pressed="false" data-stage="input" aria-controls="stream-caption">03 Input</button>
+  </div>
+  <p id="stream-caption" class="stream-caption" aria-live="polite">Windows sees another monitor. I can drag a window onto the tablet and keep working with my pen.</p>
+  <a class="blueprint-project-link" href="/notes/secondscrn/">How I built SecondScrn ↗</a>
+</aside>
+
+<style>
+  .release-label {font:11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.04em;margin-bottom:14px;}
+  .display-diagram {display:block;width:100%;height:auto;margin:18px 0 6px;overflow:visible;}
+  .device-labels {font:11px 'IBM Plex Mono',monospace;}
+  .video-layer,.input-layer {opacity:.4;transition:opacity .2s ease;}
+  [data-stage="video"] .video-layer,[data-stage="input"] .input-layer {opacity:1;}
+  .stream-stages {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:15px;}
+  .stream-stages button {min-height:44px;padding:7px 3px;border:1px solid currentColor;background:transparent;color:inherit;font:11px/1.5 'IBM Plex Mono',monospace;}
+  .stream-stages button[aria-pressed="true"] {background:var(--on-accent);color:var(--accent);border-color:var(--on-accent);}
+  @media(hover:hover) {.stream-stages button:hover {text-decoration:underline;text-underline-offset:4px;}}
+  :global(.site-shell) .stream-caption {font:11px/1.6 'IBM Plex Mono',monospace;min-height:6.4em;margin-bottom:10px;}
+  @media(prefers-reduced-motion:reduce) {.video-layer,.input-layer {transition:none;}}
+</style>
+
+<script>
+  const board = document.querySelector<HTMLElement>('.secondscrn-study');
+  if (board) {
+    const buttons = [...board.querySelectorAll<HTMLButtonElement>('.stream-stages button')];
+    const caption = board.querySelector('#stream-caption');
+    const captions: Record<string, string> = {
+      display: 'Windows sees another monitor. I can drag a window onto the tablet and keep working with my pen.',
+      video: 'The pixels stay on the GPU until they become compressed video. WebRTC carries them to the tablet’s hardware decoder.',
+      input: 'A pen stroke takes the return trip over TLS. Windows receives pen input, including pressure, rather than just a mouse click.',
+    };
+    buttons.forEach(button => button.addEventListener('click', () => {
+      const stage = button.dataset.stage;
+      if (!stage || !captions[stage]) return;
+      board.dataset.stage = stage;
+      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+      if (caption) caption.textContent = captions[stage];
+    }));
+  }
+</script>

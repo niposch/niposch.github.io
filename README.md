@@ -1,7 +1,7 @@
 # niposch.de
 
 A personal homepage built with Astro, Markdown, and custom CSS. It builds to
-static HTML; the scanner illustration and theme switch use small browser scripts.
+static HTML; the SecondScrn illustration and theme switch use small browser scripts.
 Fonts are served locally. No database or CMS is required.
 
 ## Run locally
@@ -40,15 +40,18 @@ native compiler files.
 - `src/styles/globals.css`: page spacing, colours, typography, and responsive layout.
 - `src/styles/fonts.css`: local font faces. Keep these files and the font preloads
   in `src/layouts/Layout.astro` in sync when changing typefaces or weights.
-- `src/components/ScannerStudy.astro`: the interactive scanner backend showcase.
+- `src/components/SecondScrnStudy.astro`: the interactive display/video/input showcase.
 
 Set `draft: true` on a project or note to preview it locally while excluding it
 from production pages and indexes. The schema in `src/content.config.ts` checks
 frontmatter during development and builds. Slugs come from filenames; internal
 links should use those slugs.
 
-The selected order is TikTok feed filters, Scanner → Paperless, MoniTopo,
-LTv Extended, and KRdp. MoniTopo's article covers the released Windows app;
+The selected order is SecondScrn, TikTok feed filters, Scanner → Paperless,
+MoniTopo, LTv Extended, and KRdp. SecondScrn has a project page and release post
+at `/projects/secondscrn/` and `/notes/secondscrn/`. Its homepage illustration
+is an inline SVG with keyboard-accessible display, video and input buttons.
+MoniTopo's article covers the released Windows app;
 its example-profile screenshots are in `public/images/monitopo/`. The current
 notes cover TikTok filters, the scanner workflow, and administering a home
 network with a coding assistant. First-person copy is editable in Markdown.

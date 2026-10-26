@@ -6,7 +6,7 @@ stack: ["Rust"]
 status: "CLI + MCP server"
 role: "Original project"
 featured: false
-order: 6
+order: 7
 draft: false
 ---
 

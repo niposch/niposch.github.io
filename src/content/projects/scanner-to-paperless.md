@@ -6,7 +6,7 @@ stack: ["C","Linux"]
 status: "Experimental backend"
 role: "Backend extension"
 featured: true
-order: 2
+order: 3
 draft: false
 note: scanner-to-paperless
 ---
