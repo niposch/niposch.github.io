@@ -6,7 +6,7 @@ stack: ["C++","KDE"]
 status: "Maintained branch: main"
 role: "Maintained fork"
 featured: true
-order: 6
+order: 7
 draft: false
 ---
 

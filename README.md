@@ -47,8 +47,10 @@ from production pages and indexes. The schema in `src/content.config.ts` checks
 frontmatter during development and builds. Slugs come from filenames; internal
 links should use those slugs.
 
-The selected order is SecondScrn, TikTok feed filters, Scanner → Paperless,
-MoniTopo, LTv Extended, and KRdp. SecondScrn has a project page and release post
+The selected order is SecondScrn, the Cyberpunk 2077 save editor, TikTok feed
+filters, Scanner → Paperless, MoniTopo, LTv Extended, and KRdp. The save editor's
+project page uses the screenshot in `public/images/cp2077-save-editor/` and links to
+the browser app, which is deployed separately at `/cp2077-save-editor/`. SecondScrn has a project page and release post
 at `/projects/secondscrn/` and `/notes/secondscrn/`. Its homepage illustration
 is an inline SVG with keyboard-accessible display, video and input buttons.
 MoniTopo's article covers the released Windows app;

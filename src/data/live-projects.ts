@@ -15,6 +15,13 @@ export const liveProjects = [
     action: 'Open converter',
   },
   {
+    title: 'Cyberpunk 2077 save editor', kind: 'Tool',
+    description: 'Change attributes, points, level, street cred, money and life path in a save, or bring back the once-per-playthrough attribute reset.',
+    href: '/cp2077-save-editor/', source: 'https://github.com/niposch/cp2077-save-editor',
+    detail: 'Runs locally in your browser; saves are never uploaded. Includes an example save. Back up your own saves first.',
+    action: 'Open editor',
+  },
+  {
     title: 'Unturned kit selector', kind: 'Tool',
     description: 'A browser interface for choosing items and putting together an Unturned kit.',
     href: 'https://kit-selector.niposch.de/', source: 'https://github.com/niposch/unturned-kit-selector',

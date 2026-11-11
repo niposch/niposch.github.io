@@ -6,7 +6,7 @@ stack: ["Java","Android"]
 status: "Used regularly"
 role: "ReVanced patches"
 featured: true
-order: 2
+order: 3
 draft: false
 note: tiktok-feed-filters
 ---
