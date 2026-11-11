@@ -8,13 +8,6 @@ export const liveProjects = [
     action: 'Start parking',
   },
   {
-    title: 'RustCar / RustEdit converter', kind: 'Tool',
-    description: 'Preview vehicle geometry, move it into RustEdit and merge your changes back into a RustCar configuration.',
-    href: '/rustedit-rustcars-converter/', source: 'https://github.com/niposch/rustedit-rustcars-converter',
-    detail: 'File conversion and the 3D preview run locally in your browser.',
-    action: 'Open converter',
-  },
-  {
     title: 'Cyberpunk 2077 save editor', kind: 'Tool',
     description: 'Change attributes, points, level, street cred, money and life path in a save, or bring back the once-per-playthrough attribute reset.',
     href: '/cp2077-save-editor/', source: 'https://github.com/niposch/cp2077-save-editor',
@@ -46,6 +39,13 @@ export const liveProjects = [
     href: '/ludum-dare-56/', source: 'https://github.com/niposch/ludum-dare-56',
     detail: 'Unfinished team prototype: we ran out of time during the jam. Select a level to explore.',
     action: 'Play prototype',
+  },
+  {
+    title: 'RustCar / RustEdit converter', kind: 'Tool',
+    description: 'Preview vehicle geometry, move it into RustEdit and merge your changes back into a RustCar configuration.',
+    href: '/rustedit-rustcars-converter/', source: 'https://github.com/niposch/rustedit-rustcars-converter',
+    detail: 'File conversion and the 3D preview run locally in your browser.',
+    action: 'Open converter',
   },
   {
     title: 'Wake-on-LAN Web Manager', kind: 'Demo',
