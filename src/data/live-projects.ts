@@ -1,6 +1,13 @@
 // Direct browser entry points. Keep the destination and any demo limits here.
 export const liveProjects = [
   {
+    title: 'Button & Timber', kind: 'Game',
+    description: 'Make wooden trains, bears and other toys, then stock the shelves and run the till in a little shop on Alder Lane.',
+    href: '/button-and-timber/', source: 'https://github.com/niposch/button-and-timber',
+    detail: 'Best played in a desktop browser with a keyboard. Progress saves in your browser.',
+    action: 'Play Button & Timber',
+  },
+  {
     title: 'Parking Practice', kind: 'Game · Prototype',
     description: 'Practise parallel and 90-degree parking from the driver’s seat, with mirrors, cameras and optional hints.',
     href: '/parking-trainer/', source: 'https://github.com/niposch/parking-trainer',

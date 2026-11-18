@@ -11,3 +11,7 @@ Validation: `npm run build` passed with zero errors, warnings or hints and gener
 Publish by pushing to `master`; the existing GitHub Pages workflow builds the site. The game and other project-site paths are separate Pages deployments, so no game files belong in this repository and no DNS or Caddy changes are required.
 
 Added the verified LD55 and LD56 collaborations after inspecting Panorb’s public histories. See [game-jam evidence, publication and play-test scope](game-jams.md). All three jams now use consistent `Game · Ludum Dare N` labels and link to browser builds deployed by Nick’s corresponding forks under `/ludum-dare-54/`, `/ludum-dare-55/` and `/ludum-dare-56/`. LD56 is explicitly unfinished because the team ran out of time. Game artifacts remain in separate Pages deployments, outside this homepage repository.
+
+## Button & Timber — 18 November 2026
+
+The card opens `/button-and-timber/` directly. The game is built and published from [niposch/button-and-timber](https://github.com/niposch/button-and-timber) on `main` using the experimental Godot .NET web exporter also used for Parking Practice. Saves stay in browser storage. The game's isolation service worker is scoped to `/button-and-timber/`.
