@@ -1,54 +1,46 @@
 ---
 title: Managing my home network with a coding assistant
-summary: How I use a coding assistant to inspect the setup, make changes, and check the result.
+summary: How I keep a living map of my homelab so a coding assistant can actually debug and change things without guessing.
 order: 3
 draft: false
 ---
 
+I've been using a coding assistant to help run my homelab, mostly over SSH.
+The genuinely useful part isn't asking it generic Linux questions; it's letting
+it inspect the actual machines, trace a problem end to end, make a targeted
+fix, and verify it worked.
 
+## Keeping a map of the setup
 
-I've been using a coding assistant to help manage my home network. It can
-inspect the machines, work through a problem, and make a requested change.
-The useful part is being able to carry an investigation through to a checked
-result, with the context from earlier work available.
+An assistant hits a wall fast if it has to rediscover your whole network every
+time you open a new chat. Which box runs Paperless? Is a service meant to be
+LAN-only or public? What broke last month?
 
-## Giving it enough context
+So I keep a small Git repo of plain Markdown docs describing the hosts,
+services, routes, and a dated changelog of what we've touched. That gives every
+new session a head start without treating the docs as gospel. Before changing
+anything, the assistant still checks live state on the actual host.
 
-The assistant needs to know what the setup is supposed to look like. Which
-machine runs a service? How is it reached? Should it be public, or only
-available privately?
+## Debugging across boundaries
 
-I keep a description of the setup and the changes we've made. That gives the
-next investigation a starting point. It also means the assistant can check
-the part relevant to the current problem instead of rediscovering everything.
+Where this really pays off is when a problem spans three different layers. The
+Brother scanner setup is a good example: a C SANE driver on the Proxmox host, a
+button-polling Python daemon, and an LXC container running Paperless. Being
+able to follow a single scan across all three, instead of copy-pasting isolated
+error messages into a chat box, saves hours.
 
-That description isn't a replacement for looking at the machine. It records
-what was observed and when. When a change depends on the current state, that
-state still needs to be checked.
+Of course, plenty of checks still need a human in the room: actually feeding
+paper into the scanner, seeing if a TV app responds to the remote, or deciding
+whether something should be exposed to the internet. A command exiting `0`
+isn't the same thing as seeing it work.
 
-## Working through a change
+## The hardware underneath
 
-The process starts with what I want to achieve. The assistant inspects the
-relevant service or host, works out a concrete change, and checks the result
-afterwards. Keeping those observations separate from assumptions makes it
-easier to see what has actually been established.
+Nothing exotic: most services live on an old Proxmox laptop (Docker apps in one
+container, Home Assistant and other workloads in separate VMs), everything is
+managed over Tailscale, and a tiny VPS relays only the few things I want
+reachable from outside.
 
-The scanner is one example. It involved a driver, a button-triggered workflow,
-and the hand-off to Paperless. Being able to follow the document across those
-parts was more useful than treating each failure as an isolated error message.
-
-Some checks can be done automatically. Others need me: putting documents in
-the scanner, confirming that a device behaves correctly, or deciding that an
-application should be exposed publicly. The assistant can help prepare those
-checks, but a command completing successfully doesn't replace the observation.
-
-## The setup behind it
-
-Most home services run on a Proxmox laptop, with Docker applications and Home
-Assistant kept separate. Administration goes through Tailscale. A small VPS
-provides a public entry point for the services I've chosen to expose.
-
-Those details provide the context, but they aren't the main point of the
-workflow. What matters is keeping track of the intended setup, investigating
-the actual state, and leaving enough information that the next change can
-start from what we already know.
+The hardware isn't really the point though. Keeping clean notes, checking live
+state before touching anything, and writing down what changed afterwards is
+what makes the whole workflow stick.

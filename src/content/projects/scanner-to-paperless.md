@@ -1,9 +1,9 @@
 ---
 title: "Scanning to Paperless"
-summary: "My Brother ADS-2100e scans straight into Paperless when I press its button. Getting there meant extending an open-source scanner backend and putting the document workflow together."
+summary: "Press the physical button on my Brother ADS-2100e and duplex PDFs land straight in Paperless, powered by an extended open-source Linux scanner backend."
 repository: https://github.com/niposch/brscan-ads-2100e
-stack: ["C","Linux"]
-status: "Experimental backend"
+stack: ["C", "Linux"]
+status: "Used regularly"
 role: "Backend extension"
 featured: true
 order: 4
@@ -11,8 +11,14 @@ draft: false
 note: scanner-to-paperless
 ---
 
-The workflow scans both sides, skips blank pages, and hands a completed PDF to Paperless. I use it regularly.
+Load paper, hit the button on the scanner, and a few seconds later a clean
+duplex PDF (with blank pages dropped) shows up in Paperless.
 
-The Linux backend extends existing open-source brscan work. It handles interleaved duplex records, page endings, and device-side JPEG compression. Support remains experimental: regular use with my scanner is not exhaustive testing of every mode or batch size.
+Getting Linux to talk properly to the Brother ADS-2100e meant extending an
+existing open-source `brscan` SANE backend to handle interleaved duplex
+streams, page endings, and device-side JPEG compression. It's solid for my
+everyday paperwork, though I still call it experimental since I haven't
+exhaustively tested every mode or huge stacks of paper.
 
-The repository describes the published backend and its upstream base; some later local workflow changes are separate from that published driver source.
+The published repo covers the driver extension and its upstream base; a few
+extra Paperless-specific tweaks live locally on my server.

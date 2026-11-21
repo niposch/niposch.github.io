@@ -1,16 +1,24 @@
 ---
 title: Editing RustCar vehicles in RustEdit
-summary: A browser tool for editing vehicle geometry in RustEdit and bringing it back into the original RustCar configuration.
-order: 0
+summary: A small browser converter I made for a friend to move custom RustCar vehicle layouts into RustEdit and merge the edited parts back.
+order: 10
 draft: false
 ---
 
-I built a small converter to take vehicles from the [RustCar mod](https://karuza.dev/store/product/566c04c2-c4a7-4ba3-983c-3fdb362424f9) into [RustEdit](https://www.rustedit.io/) and bring the edited geometry back.
+I put together a small browser converter for a friend who wanted to tweak custom
+vehicles from the
+[RustCar mod](https://karuza.dev/store/product/566c04c2-c4a7-4ba3-983c-3fdb362424f9)
+inside [RustEdit](https://www.rustedit.io/) without rebuilding the whole config
+by hand.
 
-Load the original car JSON and export a RustEdit `.prefab`. After editing the parts, import the saved prefab into the converter. It merges the geometry into the original configuration and keeps the vehicle settings, including handling, fuel and wheel physics.
+Drop in a RustCar JSON file (or paste it), export a `.prefab` for RustEdit,
+move the parts around, and feed the saved prefab back in. The converter merges
+the updated prop positions into the original config while leaving handling,
+fuel, and wheel physics alone. CopyPaste JSON works too, and there's a basic 3D
+preview right in the browser.
 
-The conversion runs in your browser. You can open files or paste JSON, and rotate, pan and zoom a preview of the prop positions. CopyPaste JSON is also supported.
+Any new parts you add still need to be compatible decorative entity prefabs.
+Plain static scenery from RustEdit won't automatically spawn on a vehicle. An
+optional server catalog file lets you check assets before exporting.
 
-New parts are decorative and must use compatible entity prefabs. Static scenery from RustEdit is not automatically spawnable as a vehicle part. An optional server catalog helps check new assets before export.
-
-[Open the converter](/rustedit-rustcars-converter/) · [Source code and MIT license](https://github.com/niposch/rustedit-rustcars-converter)
+[Open the converter](/rustedit-rustcars-converter/) · [Source code (MIT)](https://github.com/niposch/rustedit-rustcars-converter)

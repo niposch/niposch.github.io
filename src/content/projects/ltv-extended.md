@@ -1,21 +1,36 @@
 ---
 title: "LTv Extended"
-summary: "The Android TV launcher fork I use on my TV. My changes include navigation, rendering, and updates, building on the upstream launcher and other contributors' work."
+summary: "My personal fork of LTvLauncher that runs on my Google TV, with cleaner remote navigation, Home-button fixes, weather, media rows, and in-app updates."
 repository: https://github.com/niposch/LTvLauncher-Extended
-stack: ["Flutter","Android"]
+stack: ["Flutter", "Android"]
 status: "Used on my TV"
 role: "Maintained fork"
 featured: true
 order: 6
 draft: false
+image:
+  src: /images/ltv-extended/home.png
+  alt: "LTv Extended Android TV home screen showing Continue Watching cards, TV Apps row, weather pill, and clock."
+  width: 1920
+  height: 1080
 ---
 
-I use LTv Extended as the launcher on my TV. Work on this fork includes remote navigation and Home-button behaviour, rendering improvements, and release/update handling.
+Stock Android TV home screens are packed with recommendations I never asked
+for, so I run my own fork of LTvLauncher on my living-room TV. My changes focus
+on making it feel snappy day to day: fixing remote focus and Home-button
+behaviour, smoothing out rendering, and adding an in-app GitHub release updater.
 
-## Built on upstream work
+<img src="/images/ltv-extended/home.png" width="1920" height="1080" alt="LTv Extended home screen showing Continue Watching media cards, TV app tiles, weather summary, and clock." loading="lazy" decoding="async" />
 
-This is a fork of LTvLauncher, which builds on FLauncher. It also integrates hamish henare's posters branch, preserving the original commits and authorship. The media and weather additions from that branch are credited in the repository's attribution document.
+<img src="/images/ltv-extended/weather.png" width="1920" height="1080" alt="LTv Extended weather settings drawer showing Open-Meteo location and display toggles." loading="lazy" decoding="async" />
 
-The fork has its own Android package identity so it can coexist with upstream versions. Current APKs, setup details, and compatibility notes are maintained in the repository.
+## Standing on upstream shoulders
+
+This is a fork of LTvLauncher (itself built on FLauncher) with hamish henare's
+posters branch merged in for the media and weather UI, keeping the original
+commit history and attribution intact.
+
+It ships under its own Android package ID so it installs cleanly alongside
+upstream releases. Prebuilt APKs and install notes are in the repo.
 
 [Credits and attribution](https://github.com/niposch/LTvLauncher-Extended/blob/HEAD/ATTRIBUTION.md)

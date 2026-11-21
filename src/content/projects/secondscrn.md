@@ -1,9 +1,9 @@
 ---
 title: "SecondScrn"
-summary: "My Android tablet, now in Windows Display settings. A shared Rust core connects a virtual monitor to the tablet’s hardware decoder, with touch and pen input going the other way."
+summary: "Turns my Android tablet into a wireless Windows monitor over local Wi-Fi, with hardware-decoded video one way and touch and pen pressure back the other."
 repository: https://github.com/niposch/SecondScrn
 stack: ["Rust", "C# / WinUI 3", "Kotlin / Compose"]
-status: "First public release"
+status: "v0.0.2 released"
 role: "Original project"
 featured: true
 order: 1
@@ -11,49 +11,53 @@ note: secondscrn
 draft: false
 ---
 
-My Xiaomi Pad 7 Pro now shows up as another monitor in Windows. I can put a
-different window on it, move it around in Display settings, and use its touch
-screen and pressure-sensitive pen with Windows apps. SecondScrn is the software
-I built to make that connection over Wi-Fi.
+My Xiaomi Pad 7 Pro now shows up in Windows Display settings like any other
+monitor. I can drag windows over to it, rearrange it next to my desktop screens,
+and draw or tap in Windows apps with its pressure-sensitive pen, all over
+Wi-Fi. SecondScrn is the app behind that setup.
 
-[Download SecondScrn 0.0.1 for Windows and Android ↗](https://github.com/niposch/SecondScrn/releases/tag/v0.0.1)
+[Download the latest release for Windows and Android ↗](https://github.com/niposch/SecondScrn/releases/latest)
 
-## What I built
+## How it fits together
 
-The monitor itself comes from the existing open-source
-[Virtual Display Driver](https://github.com/VirtualDrivers/Virtual-Display-Driver)
-project. Around it, I built the Windows host, Android client, video pipeline,
-pairing and session handling.
+The virtual monitor itself comes from the open-source
+[Virtual Display Driver](https://github.com/VirtualDrivers/Virtual-Display-Driver).
+SecondScrn wraps the rest around it: the Windows host, Android client, GPU
+video pipeline, device pairing, and reconnection logic.
 
-Windows captures the extra display and converts its pixels on the GPU before
-hardware encoding. WebRTC carries the compressed video to Android's hardware
-decoder. Touch and pen events come back over a separate authenticated TLS
-connection. The devices pair with a six-digit code and connect directly;
-there is no account or server to run.
+Frames stay on the GPU from capture through colour conversion and hardware
+encoding, stream over WebRTC to Android's hardware decoder, and touch/pen input
+comes back over a separate authenticated TLS connection. Pairing is just a
+six-digit code on the local network, with no accounts or cloud server.
 
-Rust handles the shared session and networking code. The interfaces are native:
-C# with WinUI 3 on Windows, Kotlin with Jetpack Compose on Android, connected
-to the core through UniFFI.
+The shared session and networking core is in Rust, wired up via UniFFI to
+native UIs on both sides: C# with WinUI 3 on Windows and Kotlin with Jetpack
+Compose on Android.
 
-Most of the interesting work happened between those pieces: keeping a mostly
-idle desktop responsive, handling bursts of video without building up a queue,
-and finding out why a perfectly valid HEVC stream produced ghost cursors.
-I wrote about those in the [build post](/notes/secondscrn/).
+Most of the tricky work happened in the glue between those pieces: keeping an
+idle desktop snappy when a window suddenly moves, stopping video bursts from
+queuing up, and tracking down why a valid HEVC stream was spawning ghost
+cursors. I wrote up those bugs in the [build post](/notes/secondscrn/).
 
-## Released, with more hardware to try
+## Current state & rough edges
 
-I released **0.0.1 on 25 October 2026**. My test setup is Windows 11 with an
-NVIDIA RTX 4080 SUPER and a Xiaomi Pad 7 Pro. Touch, pen pressure, rotation and
-reconnection work on that setup; other GPUs and tablets still need more testing.
+The first public build (**v0.0.1**) went out on 25 October 2026, followed by
+**v0.0.2** on 28 October with much lower latency on busy Wi-Fi, reference-frame
+recovery on NVIDIA H.264/AV1 to cut down freezes after packet loss, and a
+reorganised Windows UI. On my desk (Windows 11, an RTX 4080 SUPER, and a Xiaomi
+Pad 7 Pro), touch, pen pressure, screen rotation, and reconnecting all work
+well. Other GPUs (AMD/Intel, hybrid laptops) and tablets still need broader
+testing, so expect early-release quirks on different hardware.
 
-The release supports one tablet at a time and SDR video. Fine coloured text
-can look soft because of 4:2:0 chroma, keyboard forwarding is still missing,
-and repeated mode changes can upset the external display driver. The
-[status page](https://github.com/niposch/SecondScrn/blob/v0.0.1/docs/status.md)
-keeps track of these limits and the remaining hardware checks.
+Right now it handles one tablet at a time in SDR. Fine coloured text can look a
+little soft thanks to 4:2:0 chroma, keyboard forwarding isn't in yet, and rapid
+mode changes can sometimes trip up the external virtual display driver. Known
+rough edges are tracked on the
+[status page](https://github.com/niposch/SecondScrn/blob/HEAD/docs/status.md).
 
-To try it, you need Windows 11 x64, Android 10 or newer, compatible hardware
-video encoding/decoding and a network connection between the devices. The
-[release](https://github.com/niposch/SecondScrn/releases/tag/v0.0.1) includes a
-Windows installer and Android APK. The driver needs administrator approval once;
-the Windows app is unsigned, so SmartScreen may warn. Source is MIT licensed.
+You'll need Windows 11 x64, Android 10+, and hardware encode/decode support.
+The [latest release](https://github.com/niposch/SecondScrn/releases/latest)
+includes a Windows installer, a portable ZIP, and an Android APK (keep PC and
+tablet on the same version until 1.0). Installing the virtual display driver
+prompts for admin rights once, and SmartScreen may complain since the Windows
+build isn't code-signed. MIT licensed.

@@ -32,7 +32,8 @@ native compiler files.
 ## Edit content
 
 - `src/content/projects/*.md`: project summaries and project pages. `order` controls
-  the sequence; `featured: true` puts a project in the homepage's main list.
+  the sequence; `featured: true` puts a project in the homepage's main list;
+  optional `image` (`src`, `alt`, `width`, `height`) adds a preview thumbnail.
 - `src/content/notes/*.md`: posts. The title and summary appear in the notes index
   and on the homepage; the Markdown body becomes the article.
 - `src/content/profile/about.md`: the full About page.

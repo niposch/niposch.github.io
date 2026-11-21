@@ -1,57 +1,52 @@
 ---
 title: Filtering TikTok's feed with ReVanced
-summary: Removing ads and Shop videos from the feed with patches I use regularly.
+summary: How I strip ads and TikTok Shop videos out of my feed using ReVanced patches I run every day.
 order: 1
 draft: false
 ---
 
+Between normal ads and endless TikTok Shop clips, my feed was turning into an
+infomercial. I put together a set of ReVanced patches to strip both out, and I
+use them every day.
 
+The two filters are independent: one drops regular platform ads, and the other
+drops videos carrying TikTok Shop product tags or promo metadata.
 
-I made a set of ReVanced patches for TikTok to remove ads and Shop videos from
-the feed. I use them regularly, so this is one of the projects I want to write
-about here.
+## Filtering by metadata instead of guessing
 
-There are two separate filters. One removes videos explicitly marked as ads.
-The other removes videos carrying Shop information, such as product links or
-shopping promotions. They can be enabled independently.
+The Shop filter doesn't try to guess whether someone is selling something from
+the video or captions. It looks straight at the feed item's attached product
+and shopping metadata and drops the entire entry before it hits the feed.
 
-## What the filter actually looks at
+That's a useful distinction: plenty of Shop videos aren't flagged as normal ads,
+and occasionally a regular creator tags a product anyway. Going off the app's
+own metadata keeps the patch fast and clean, even if unlabelled sponsorships
+still slip by. The dedicated Shop tab still works if you ever actually want it.
 
-The Shop filter works with the information attached to a feed item. It doesn't
-try to work out what a video is about by analysing its picture, audio, or
-caption. If the item contains the relevant product or shopping metadata, the
-whole item is removed.
+Honestly, stripping items cleanly out of the feed pipeline, rather than just
+hiding a label or button on top of them, was the most fun part of putting this
+together.
 
-That distinction matters. A video can be promoting something without being
-marked as a platform ad. It can also have Shop metadata without looking like a
-conventional advert. The filter follows those fields; it doesn't promise to
-identify every promotion. The Shop tab itself remains accessible.
+## Side-by-side install & downloads
 
-For me, this is also the more interesting part of the project: changing what
-the app puts into the feed, rather than just hiding a visible button or label.
+There's also an optional patch to change the Android package name so you can
+keep the patched app next to the official one with separate data. Changing a
+package name alone tends to break login or registration when the app's network
+requests still expect the original ID, so the bundle includes a fix for that
+too.
 
-## Installing it separately
+An optional download patch unlocks the app's local download toggles. It only
+flips the client-side permission flags, not anything enforced by TikTok's
+servers.
 
-The bundle also has an optional package-name change, so the patched app can be
-installed separately with its own data. There is a registration fix associated
-with that change. Renaming an Android package is not always enough when the
-app's own requests still carry assumptions about its original identity.
+## Keeping it working
 
-There are optional download controls as well. Those change the app's download
-permission records; they don't make unavailable media available or bypass
-server-side access restrictions.
+The bundle publishes a permanent release feed that ReVanced Manager can pull
+updates from (you still have to re-patch the APK after grabbing a new bundle).
+Because these patches hook into app internals, they're always tied to a specific
+TikTok version. Check the repo for the supported version and install steps.
 
-## Keeping it useful
+(Independent community project built on ReVanced Patcher, not affiliated with
+ReVanced.)
 
-The patches have a permanent release feed that ReVanced Manager can check for
-new bundles. Updating the bundle and updating an installed app are separate
-steps: after getting the new patches, the app still needs to be patched again.
-
-This is version-specific work. The supported TikTok version and setup details
-belong in the repository, where they can stay alongside the releases. An app
-update can change the code or metadata the patches depend on.
-
-The project is independent and uses ReVanced Patcher; it is not an official
-ReVanced project.
-
-[Source, supported version, and installation instructions](https://github.com/niposch/revanced-tiktok-patches)
+[Source, supported version, and install steps ↗](https://github.com/niposch/revanced-tiktok-patches)
