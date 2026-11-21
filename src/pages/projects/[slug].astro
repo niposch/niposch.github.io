@@ -18,7 +18,6 @@ const status = await withLatestVersion(project.data.status, project.data.reposit
     <div class="article-meta">
       <table class="spec">
         <tr><th scope="row">Stack</th><td>{project.data.stack.join(' / ')}</td></tr>
-        <tr><th scope="row">Role</th><td>{project.data.role}</td></tr>
         <tr><th scope="row">Status</th><td>{status}</td></tr>
         <tr><th scope="row">Source</th><td><a href={project.data.repository} target="_blank" rel="noopener noreferrer">Source on GitHub ↗</a></td></tr>
       </table>
