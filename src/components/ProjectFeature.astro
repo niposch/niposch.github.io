@@ -1,11 +1,22 @@
 ---
 import type { CollectionEntry } from 'astro:content';
-interface Props { project: CollectionEntry<'projects'>; numbered?: boolean; }
-const { project, numbered = true } = Astro.props;
-const { title, summary, stack, role, status, note, order } = project.data;
+import { withLatestVersion } from '../lib/github';
+interface Props { project: CollectionEntry<'projects'>; headingLevel?: 'h2' | 'h3'; }
+const { project, headingLevel: Heading = 'h3' } = Astro.props;
+const { title, summary, stack, role, status, note, image, repository } = project.data;
+const displayStatus = await withLatestVersion(status, repository);
+const href = `/projects/${project.id}/`;
+const isLive = /live/i.test(status);
 ---
-<article class="project-feature">
-  <div class="project-number" aria-hidden="true">{numbered ? String(order).padStart(2, '0') : '↗'}</div>
-  <div><h3><a href={`/projects/${project.id}/`}>{title}</a></h3><p>{summary}</p>{project.data.draft && <span class="draft-label">Draft preview</span>}</div>
-  <div class="project-meta"><span>{stack.join(' / ')}</span><span>{role}</span><span>{status}</span><a href={note ? `/notes/${note}/` : `/projects/${project.id}/`}>{note ? 'Read the post' : 'Project details'} ↗</a></div>
+<article class="card">
+  <span class={`card-status${isLive ? ' is-live' : ''}`}>{displayStatus}</span>
+  <Heading><a href={href}>{title}</a></Heading>
+  {image && <a class="card-image" href={href} tabindex="-1" aria-hidden="true"><img src={image.src} width={image.width} height={image.height} alt="" loading="lazy" decoding="async" /></a>}
+  <p>{summary}</p>
+  {project.data.draft && <span class="draft-label">Draft preview</span>}
+  <table class="spec">
+    <tr><th scope="row">Stack</th><td>{stack.join(' / ')}</td></tr>
+    <tr><th scope="row">Role</th><td>{role}</td></tr>
+  </table>
+  <a class="text-link" href={note ? `/notes/${note}/` : href}>{note ? 'Read the post' : 'Project details'} ↗</a>
 </article>

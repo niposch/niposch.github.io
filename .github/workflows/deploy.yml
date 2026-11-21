@@ -4,6 +4,10 @@ on:
   push:
     branches:
       - master
+  # Daily rebuild so release versions pulled from GitHub (e.g. SecondScrn) stay current.
+  schedule:
+    - cron: '17 5 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -28,6 +32,8 @@ jobs:
 
       - name: Build Project
         run: npm run build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
         uses: actions/upload-pages-artifact@v5

@@ -2,20 +2,21 @@
 import Layout from '../layouts/Layout.astro';
 import { liveProjects } from '../data/live-projects';
 ---
-<Layout title="Live projects" description="Open Nick’s browser tools, playable games and demos in one place.">
+<Layout title="Live projects" description="Playable games, browser tools, and demos by Nick, with no install required.">
   <div class="page-intro">
     <h1>Live projects</h1>
-    <p>Tools, games and demos you can open right here. Pick a project and try it.</p>
+    <p>Games, browser tools, and demos you can jump straight into. Nothing to install.</p>
   </div>
-  <section class="live-projects" aria-label="Browser projects">
-    {liveProjects.map(project => <article class="live-project">
-      <div class="live-kind">{project.kind}</div>
+  <section class="card-grid live-grid" aria-label="Browser projects">
+    {liveProjects.map(project => <article class="card">
+      <span class="card-status">{project.kind}</span>
       <h2><a href={project.href}>{project.title}</a></h2>
+      {project.image && <a class="card-image" href={project.href} tabindex="-1"><img src={project.image.src} width={project.image.width} height={project.image.height} alt={project.image.alt} loading="lazy" decoding="async" /></a>}
       <p>{project.description}</p>
-      <p class="live-detail">{project.detail}</p>
-      <div class="live-links">
-        <a class="live-open" href={project.href}>{project.action} <span aria-hidden="true">↗</span></a>
-        <a class="live-source" href={project.source}>Source code <span aria-hidden="true">↗</span></a>
+      <p class="detail">{project.detail}</p>
+      <div class="button-row">
+        <a class="button primary" href={project.href}>{project.action} <span aria-hidden="true">↗</span></a>
+        <a class="text-link" href={project.source}>Source code <span aria-hidden="true">↗</span></a>
       </div>
     </article>)}
   </section>

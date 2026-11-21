@@ -1,12 +1,12 @@
 ---
-import dmSansRegular from '@fontsource/dm-sans/files/dm-sans-latin-400-normal.woff2?url';
-import dmSansMedium from '@fontsource/dm-sans/files/dm-sans-latin-500-normal.woff2?url';
-import spaceGrotesk from '@fontsource/space-grotesk/files/space-grotesk-latin-500-normal.woff2?url';
-import ibmPlexMono from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
+import plexSans from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-400-normal.woff2?url';
+import plexSansMedium from '@fontsource/ibm-plex-sans/files/ibm-plex-sans-latin-500-normal.woff2?url';
+import plexCondensed from '@fontsource/ibm-plex-sans-condensed/files/ibm-plex-sans-condensed-latin-600-normal.woff2?url';
+import plexMono from '@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2?url';
 import '../styles/fonts.css';
 import '../styles/globals.css';
 interface Props { title: string; description?: string; }
-const { title, description = 'Personal software projects and notes by Nick, a software developer studying for a master’s.' } = Astro.props;
+const { title, description = 'Desktop tools, browser apps, games, and build notes by Nick.' } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const active = Astro.url.pathname;
 const pageTitle = title === 'niposch' ? title : `${title} · niposch`;
@@ -18,7 +18,7 @@ const pageTitle = title === 'niposch' ? title : `${title} · niposch`;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content={description} />
     <meta name="color-scheme" content="light dark" />
-    {[dmSansRegular, dmSansMedium, spaceGrotesk, ibmPlexMono].map(font => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" />)}
+    {[plexSans, plexSansMedium, plexCondensed, plexMono].map(font => <link rel="preload" href={font} as="font" type="font/woff2" crossorigin="anonymous" />)}
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="canonical" href={canonical} />
     <meta property="og:title" content={pageTitle} />
@@ -37,7 +37,7 @@ const pageTitle = title === 'niposch' ? title : `${title} · niposch`;
     <a class="skip-link" href="#main">Skip to content</a>
     <div class="site-shell">
       <header class="site-header">
-        <a class="brand" href="/" aria-label="niposch homepage">niposch<span>.</span></a>
+        <a class="brand" href="/" aria-label="niposch homepage">niposch</a>
         <nav aria-label="Main navigation">
           <a href="/projects/" aria-current={active.startsWith('/projects') ? 'page' : undefined}>Projects</a>
           <a href="/live/" aria-current={active.startsWith('/live') ? 'page' : undefined}>Live projects</a>

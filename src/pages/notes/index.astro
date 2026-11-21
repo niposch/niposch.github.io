@@ -3,7 +3,7 @@ import Layout from '../../layouts/Layout.astro';
 import { getNotes } from '../../lib/content';
 const notes = await getNotes();
 ---
-<Layout title="Notes" description="Notes about TikTok patches, scanning to Paperless, and managing a home network with a coding assistant.">
-  <div class="page-intro"><h1>Notes</h1><p>A few things I've been working on.</p></div>
+<Layout title="Notes" description="Build logs and write-ups on SecondScrn, TikTok patches, scanning to Paperless, and homelab tinkering.">
+  <div class="page-intro"><h1>Notes</h1><p>Write-ups on the trickier bugs, hardware quirks, and workflows behind these projects.</p></div>
   <div class="notes-index">{notes.map(note => <article><h2><a href={`/notes/${note.id}/`}>{note.data.title} ↗</a></h2><p>{note.data.summary}</p>{note.data.draft && <span class="draft-label">Draft preview</span>}</article>)}</div>
 </Layout>

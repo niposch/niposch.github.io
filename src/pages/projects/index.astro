@@ -4,7 +4,7 @@ import ProjectFeature from '../../components/ProjectFeature.astro';
 import { getProjects } from '../../lib/content';
 const projects = await getProjects();
 ---
-<Layout title="Projects" description="Personal software projects by Nick: TikTok patches, scanner support, LTv Extended, KRdp, and other tools.">
-  <div class="page-intro"><h1>Projects</h1><p>Things I've made, changed, or am still working on.</p><a class="intro-link" href="/live/">Open browser tools, games and demos ↗</a></div>
-  <section class="project-index" aria-label="Project list">{projects.map(project => <ProjectFeature project={project} numbered={project.data.featured} />)}</section>
+<Layout title="Projects" description="Desktop tools, browser apps, open-source forks, and Linux driver work by Nick.">
+  <div class="page-intro"><h1>Projects</h1><p>Tools, forks, and side projects I actually use, plus a few experiments.</p><div class="button-row"><a class="button primary" href="/live/">Try browser apps and games ↗</a></div></div>
+  <section class="card-grid project-index" aria-label="Project list">{projects.map(project => <ProjectFeature project={project} headingLevel="h2" />)}</section>
 </Layout>

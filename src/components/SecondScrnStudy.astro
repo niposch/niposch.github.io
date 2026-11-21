@@ -1,98 +1,157 @@
-<aside class="blueprint secondscrn-study" aria-labelledby="secondscrn-title" data-stage="display">
-  <div class="release-label">SecondScrn / v0.0.1</div>
-  <h2 id="secondscrn-title" class="blueprint-title">My tablet is a Windows monitor now.</h2>
-  <p class="blueprint-intro">SecondScrn puts an extra Windows desktop on my Android tablet. Touch and pen input go back to the PC.</p>
-  <svg class="display-diagram" viewBox="0 0 360 170" role="img" aria-labelledby="display-diagram-title display-diagram-desc">
-    <title id="display-diagram-title">SecondScrn connects a Windows PC and an Android tablet</title>
-    <desc id="display-diagram-desc">A Windows PC shows a code editor; an Android tablet shows a separate drawing window on the extended desktop. Both screens have Windows-style taskbars. Encrypted video goes to the tablet, and touch and pen input return to the PC.</desc>
-    <g class="device" fill="none" stroke="currentColor" stroke-width="1.5">
-      <rect x="8" y="15" width="144" height="96" rx="4" />
-      <path d="M64 111v15m32-15v15m-48 0h64" />
-      <rect x="216" y="30" width="136" height="92" rx="9" />
-      <path d="M225 39h118v74H225z" />
-      <circle cx="220" cy="76" r="1" fill="currentColor" stroke="none" />
-    </g>
-    <!-- Different apps on the two screens make the extended desktop visible. -->
-    <g class="desktop" stroke="currentColor" stroke-width="1" fill="none">
-      <path d="M16 23h128v80H16z" fill="currentColor" fill-opacity=".06" stroke="none" />
-      <path d="M21 79c20-45 47 32 73-27s42-22 48-24M227 95c25-48 44 18 71-28s30-9 42-13" opacity=".15" stroke-width="10" />
-      <rect x="24" y="29" width="110" height="59" rx="2" fill="var(--accent)" />
-      <path d="M24 40h110m-16-6h4m4-1 3 3m0-3-3 3M45 40v48" />
-      <path d="M29 47h10m-10 6h7m-7 6h9m-9 6h6" opacity=".45" />
-      <path d="m56 48-4 4 4 4m17-8 4 4-4 4m-7-9-4 10M55 65h34m-28 6h48m-54 6h26" stroke-width="1.5" />
-      <rect x="233" y="45" width="102" height="55" rx="2" fill="var(--accent)" />
-      <path d="M233 56h102m-16-6h4m4-1 3 3m0-3-3 3M245 56v44" />
-      <path d="M238 62h3m-3 6h3m-3 6h3m-3 6h3" stroke-width="2" />
-      <path d="M254 87c-5-23 16-29 23-12s14 17 21 2 12-9 18-7" stroke-width="2" />
-      <!-- Windows 11-style centered Start buttons, pinned apps and system trays. -->
-      <path d="M16 91h128v12H16zM226 102h116v10H226z" fill="currentColor" fill-opacity=".15" stroke="none" />
-      <path d="M16 91h128m82 11h116" opacity=".5" />
-      <g fill="currentColor" stroke="none">
-        <path d="M56 94h3v3h-3zm4 0h3v3h-3zm-4 4h3v3h-3zm4 0h3v3h-3zM262 104h2.5v2.5H262zm3.5 0h2.5v2.5h-2.5zm-3.5 3.5h2.5v2.5H262zm3.5 0h2.5v2.5h-2.5z" />
-        <rect x="82" y="94" width="7" height="7" rx="1" opacity=".65" />
-        <rect x="94" y="94" width="7" height="7" rx="1" opacity=".4" />
-        <rect x="284" y="104" width="6" height="6" rx="1" opacity=".65" />
-        <rect x="295" y="104" width="6" height="6" rx="1" opacity=".4" />
-      </g>
-      <circle cx="72" cy="97" r="2.5" /><path d="m74 99 2 2" />
-      <circle cx="276" cy="107" r="2" /><path d="m278 109 1 1" />
-      <path d="m121 98 2-2 2 2m3-3h10m-7 4h7m186 8 2-2 2 2m3-2h8m-6 3h6" opacity=".6" />
-    </g>
-    <g class="video-layer" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M153 56h54m-6-5 6 5-6 5" />
-      <rect x="167" y="47" width="10" height="18" rx="2" fill="var(--accent)" />
-      <rect x="183" y="47" width="10" height="18" rx="2" fill="var(--accent)" />
-    </g>
-    <g class="input-layer" fill="none" stroke="currentColor" stroke-width="1.5">
-      <path d="M214 95h-53m6-5-6 5 6 5" stroke-dasharray="3 3" />
-      <path d="m313 92 20-27 5 4-20 27-8 5z" fill="var(--accent)" />
-      <circle cx="258" cy="87" r="4" />
-      <path d="M251 87a7 7 0 0 1 7-7" />
-    </g>
-    <g fill="currentColor" class="device-labels">
-      <text x="80" y="151" text-anchor="middle">Windows PC</text>
-      <text x="284" y="151" text-anchor="middle">Extended desktop</text>
-    </g>
-  </svg>
-  <div class="stream-stages" role="group" aria-label="Explore how SecondScrn works">
-    <button type="button" aria-pressed="true" data-stage="display" aria-controls="stream-caption">01 Display</button>
-    <button type="button" aria-pressed="false" data-stage="video" aria-controls="stream-caption">02 Video</button>
-    <button type="button" aria-pressed="false" data-stage="input" aria-controls="stream-caption">03 Input</button>
+---
+import { getEntry } from 'astro:content';
+import { getLatestRelease, repoSlug } from '../lib/github';
+const project = await getEntry('projects', 'secondscrn');
+if (!project) throw new Error('Missing src/content/projects/secondscrn.md');
+const slug = repoSlug(project.data.repository);
+const release = slug ? await getLatestRelease(slug) : null;
+const version = release?.tag ?? project.data.status.match(/v\d+(?:\.\d+)+/)?.[0] ?? '';
+// Flag fresh releases for two months, then let the panel settle.
+const isNew = release ? Date.now() - release.publishedAt.getTime() < 60 * 24 * 60 * 60 * 1000 : false;
+---
+<section class="feature secondscrn-study" aria-labelledby="secondscrn-title">
+  <div class="feature-text">
+    <div class="release-label">{isNew && <span class="marker">New</span>}<span>SecondScrn{version && ` / ${version}`}</span></div>
+    <h3 id="secondscrn-title">My tablet is a Windows monitor now.</h3>
+    <p>SecondScrn extends my Windows desktop onto an Android tablet over Wi-Fi, with touch and pen pressure coming back the other way.</p>
+    <table class="spec">
+      <tr><th scope="row">Stack</th><td>{project.data.stack.join(' / ')}</td></tr>
+      <tr><th scope="row">Role</th><td>{project.data.role}</td></tr>
+    </table>
+    <div class="feature-links">
+      <a class="text-link" href="/notes/secondscrn/">How I built SecondScrn ↗</a>
+      {release && <a class="text-link" href={release.url} target="_blank" rel="noopener noreferrer">Download {release.tag} ↗</a>}
+    </div>
   </div>
-  <p id="stream-caption" class="stream-caption" aria-live="polite">Windows sees another monitor. I can drag a window onto the tablet and keep working with my pen.</p>
-  <a class="blueprint-project-link" href="/notes/secondscrn/">How I built SecondScrn ↗</a>
-</aside>
+  <figure class="feature-figure">
+      <svg class="display-diagram" viewBox="0 0 500 214" role="img" aria-labelledby="display-diagram-title display-diagram-desc">
+        <title id="display-diagram-title">SecondScrn turns an Android tablet into a second Windows monitor</title>
+        <desc id="display-diagram-desc">A Windows PC and an Android tablet side by side as display 1 and display 2 of one extended desktop. A single window spans both screens. Video streams from the PC to the tablet over local Wi-Fi, and touch and pen input with pressure goes back to the PC.</desc>
+        <defs>
+          <marker id="ss-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" markerUnits="userSpaceOnUse" orient="auto-start-reverse">
+            <path d="M1.5 1.5 8 5l-6.5 3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </marker>
+          <clipPath id="ss-canvas"><rect x="164" y="40" width="80" height="52" /><rect x="330" y="40" width="118" height="52" /><rect x="400" y="10" width="40" height="50" /></clipPath>
+          <clipPath id="ss-gap"><rect x="244" y="40" width="86" height="52" /></clipPath>
+        </defs>
+
+        <!-- Hardware -->
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <rect x="8" y="8" width="244" height="146" rx="5" />
+          <rect class="screen" x="16" y="16" width="228" height="120" />
+          <path d="M118 154v18m24-18v18m-42 0h60" stroke-linecap="round" />
+          <rect x="318" y="8" width="174" height="122" rx="12" />
+          <rect class="screen" x="330" y="16" width="150" height="106" />
+          <circle cx="324" cy="69" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+
+        <!-- Taskbars: Windows runs on both screens -->
+        <g class="taskbar" stroke="currentColor" stroke-width="1">
+          <path d="M16 128h228M330 114h150" fill="none" />
+          <g fill="currentColor" stroke="none">
+            <rect x="117" y="130" width="4.5" height="4.5" /><rect x="124" y="130" width="4.5" height="4.5" opacity=".5" /><rect x="131" y="130" width="4.5" height="4.5" opacity=".5" /><rect x="138" y="130" width="4.5" height="4.5" opacity=".5" />
+            <rect x="392" y="116.5" width="3.5" height="3.5" /><rect x="398.5" y="116.5" width="3.5" height="3.5" opacity=".5" /><rect x="405" y="116.5" width="3.5" height="3.5" opacity=".5" /><rect x="411.5" y="116.5" width="3.5" height="3.5" opacity=".5" />
+          </g>
+        </g>
+
+        <!-- Code editor stays on the PC -->
+        <g stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <rect class="window-body" x="26" y="26" width="124" height="90" />
+          <path d="M26 35h124" fill="none" />
+          <path d="M138 28.5l3 3m0-3-3 3" fill="none" stroke-width="1" />
+          <path d="M35 46h24m-16 9h40m-40 9h30m-38 9h18m-10 9h48m-56 9h14m-6 9h34" fill="none" stroke-linecap="round" opacity=".5" />
+        </g>
+
+        <!-- One window spanning both displays -->
+        <g class="span-window" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <path class="window-body" d="M244 30H164V92H244" />
+          <path class="window-body" d="M330 30H448V92H330" />
+          <rect class="title" x="164" y="30" width="80" height="10" />
+          <rect class="title" x="330" y="30" width="118" height="10" />
+          <path d="M436 32.5l3.5 3.5m0-3.5-3.5 3.5" fill="none" stroke-width="1" />
+          <path d="M170 50h5m-5 7h5m-5 7h5m-5 7h5" fill="none" stroke-width="2" stroke-linecap="round" opacity=".5" />
+          <path class="virtual" d="M244 30H330M244 40H330M244 92H330" fill="none" stroke-dasharray="3 3" />
+        </g>
+
+        <!-- One pen stroke across both screens; its width follows pen pressure -->
+        <g stroke="currentColor" stroke-width="1.5" stroke-linejoin="round">
+          <path class="ink" d="M186.3 82.1 187.5 79.9 188.8 77.8 190.0 75.8 191.3 74.1 192.5 72.4 193.7 71.0 195.0 69.7 196.2 68.5 197.4 67.5 198.7 66.6 199.9 65.8 201.1 65.1 202.3 64.6 203.5 64.1 204.8 63.8 206.0 63.5 207.2 63.4 208.4 63.3 209.7 63.3 210.9 63.3 212.2 63.5 213.4 63.6 214.7 63.9 216.0 64.2 217.3 64.5 218.6 64.9 220.0 65.4 221.3 65.8 222.7 66.3 224.0 66.8 225.4 67.3 226.8 67.9 228.2 68.4 229.7 69.0 231.1 69.5 232.6 70.1 234.1 70.6 235.6 71.1 237.1 71.6 238.6 72.0 240.2 72.4 241.7 72.8 243.3 73.1 245.0 73.4 246.6 73.6 248.2 73.7 249.9 73.8 251.6 73.8 253.3 73.7 255.1 73.5 256.8 73.3 258.6 72.9 260.4 72.4 262.2 71.8 264.0 71.1 265.8 70.2 267.6 69.3 269.5 68.2 271.4 66.9 273.2 65.6 275.0 64.2 276.8 62.9 278.5 61.7 280.2 60.5 281.9 59.4 283.5 58.3 285.2 57.3 286.8 56.3 288.4 55.4 289.9 54.5 291.5 53.7 293.0 52.9 294.5 52.2 296.0 51.5 297.4 50.9 298.9 50.3 300.3 49.8 301.7 49.3 303.0 48.9 304.4 48.6 305.7 48.2 307.1 48.0 308.4 47.7 309.6 47.6 310.9 47.4 312.2 47.3 313.4 47.3 314.6 47.3 315.8 47.3 317.0 47.4 318.2 47.6 319.4 47.8 320.6 48.0 321.7 48.3 322.9 48.6 324.0 48.9 325.1 49.3 326.3 49.8 327.4 50.3 328.5 50.8 329.6 51.4 330.7 52.0 331.8 52.7 332.9 53.4 334.0 54.2 335.1 55.0 336.2 55.9 337.3 56.8 338.4 57.7 339.5 58.7 340.6 59.8 341.7 60.9 342.8 62.0 343.8 63.2 344.9 64.4 346.0 65.7 347.1 67.0 348.2 68.3 349.3 69.7 350.4 71.2 351.5 72.7 352.7 74.1 353.9 75.4 355.1 76.6 356.3 77.8 357.5 78.9 358.7 79.9 359.9 80.8 361.1 81.6 362.4 82.3 363.6 83.0 364.8 83.6 366.1 84.1 367.4 84.5 368.6 84.9 369.9 85.2 371.1 85.4 372.4 85.6 373.7 85.7 374.9 85.7 376.2 85.6 377.4 85.5 378.7 85.3 379.9 85.1 381.1 84.8 382.4 84.5 383.6 84.1 384.8 83.7 386.0 83.2 387.2 82.6 388.4 82.1 389.6 81.5 390.7 80.8 391.9 80.1 393.1 79.4 394.2 78.6 395.4 77.8 396.5 76.9 397.6 76.1 398.8 75.2 399.9 74.2 401.0 73.3 402.1 72.3 403.2 71.3 404.2 70.3 405.3 69.2 406.4 68.2 407.4 67.1 408.5 66.0 409.5 64.9 410.5 63.7 411.6 62.6 412.6 61.4 413.6 60.3 414.5 59.1 415.5 57.9 416.5 56.8 417.4 55.6 418.3 54.4 419.2 53.2 L418.8 52.8 417.8 53.9 416.7 55.0 415.7 56.1 414.7 57.3 413.7 58.4 412.6 59.5 411.6 60.6 410.5 61.7 409.5 62.7 408.4 63.8 407.3 64.8 406.3 65.9 405.2 66.9 404.1 67.9 403.0 68.9 401.9 69.8 400.8 70.8 399.6 71.7 398.5 72.6 397.4 73.4 396.3 74.3 395.1 75.0 394.0 75.8 392.9 76.5 391.7 77.2 390.6 77.9 389.5 78.5 388.3 79.1 387.2 79.6 386.1 80.1 384.9 80.5 383.8 81.0 382.7 81.3 381.6 81.6 380.4 81.9 379.3 82.1 378.2 82.2 377.1 82.3 376.0 82.4 374.9 82.4 373.8 82.3 372.8 82.2 371.7 82.1 370.6 81.8 369.5 81.6 368.5 81.2 367.4 80.8 366.3 80.3 365.3 79.8 364.2 79.2 363.1 78.5 362.1 77.7 361.0 76.9 360.0 76.0 358.9 75.0 357.8 73.9 356.8 72.8 355.7 71.6 354.7 70.2 353.6 68.8 352.5 67.3 351.4 65.8 350.3 64.4 349.2 63.0 348.0 61.7 346.9 60.4 345.8 59.2 344.7 57.9 343.5 56.8 342.4 55.7 341.2 54.6 340.1 53.6 338.9 52.6 337.7 51.6 336.5 50.7 335.3 49.9 334.1 49.1 332.9 48.3 331.7 47.6 330.5 46.9 329.2 46.3 328.0 45.8 326.7 45.3 325.4 44.8 324.1 44.4 322.8 44.0 321.5 43.7 320.2 43.4 318.8 43.2 317.5 43.1 316.1 43.0 314.7 42.9 313.3 42.9 311.9 42.9 310.5 43.0 309.1 43.2 307.7 43.4 306.2 43.7 304.8 44.0 303.3 44.3 301.8 44.8 300.3 45.2 298.8 45.7 297.3 46.3 295.8 46.9 294.2 47.6 292.7 48.3 291.1 49.1 289.5 49.9 287.9 50.8 286.3 51.7 284.6 52.7 282.9 53.7 281.3 54.8 279.6 56.0 277.9 57.1 276.1 58.4 274.4 59.7 272.6 61.0 270.8 62.4 269.1 63.7 267.4 64.9 265.7 65.9 264.1 66.8 262.4 67.6 260.8 68.2 259.2 68.8 257.7 69.3 256.1 69.6 254.5 69.9 253.0 70.1 251.5 70.2 249.9 70.3 248.4 70.2 246.9 70.1 245.4 70.0 243.9 69.8 242.4 69.5 240.9 69.2 239.5 68.9 238.0 68.5 236.5 68.1 235.0 67.6 233.6 67.1 232.1 66.7 230.7 66.2 229.3 65.7 227.8 65.2 226.4 64.7 225.0 64.2 223.6 63.7 222.1 63.3 220.7 62.8 219.3 62.5 217.9 62.1 216.5 61.8 215.2 61.5 213.8 61.3 212.4 61.2 211.0 61.1 209.7 61.1 208.3 61.2 206.9 61.4 205.6 61.6 204.2 62.0 202.9 62.4 201.6 63.0 200.3 63.6 199.0 64.4 197.8 65.3 196.5 66.3 195.3 67.5 194.0 68.8 192.8 70.2 191.6 71.7 190.4 73.5 189.2 75.3 188.0 77.3 186.9 79.5 185.7 81.9Z" clip-path="url(#ss-canvas)" fill="currentColor" stroke="none" />
+          <path class="ink-gap" d="M186 82C210 34 236 92 272 64S330 40 352 70S400 76 419 53" clip-path="url(#ss-gap)" fill="none" stroke-width="1.5" stroke-dasharray="1 3.5" stroke-linecap="round" />
+          <path class="pen" d="M419 53 423 44 449 17 456 24 429 50Z" />
+          <path d="M423 44 429 50" fill="none" />
+        </g>
+
+        <!-- Wireless link -->
+        <g fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round">
+          <path class="flow" d="M280 108H312" marker-end="url(#ss-arrow)" />
+          <path class="flow flow-back" d="M312 124H280" stroke-dasharray="3 3" marker-end="url(#ss-arrow)" />
+          <path d="M288.5 145.5a12 12 0 0 1 17 0M291.3 148.3a8 8 0 0 1 11.4 0M294.2 151.2a4 4 0 0 1 5.6 0" />
+          <circle cx="297" cy="154" r="1.4" fill="currentColor" stroke="none" />
+        </g>
+
+        <!-- Callouts, explained in the legend -->
+        <g class="callouts" font-size="9" text-anchor="middle">
+          <g><rect x="274" y="55" width="22" height="12" /><text x="285" y="63.8">01</text></g>
+          <g><rect x="254" y="102" width="22" height="12" /><text x="265" y="110.8">02</text></g>
+          <g><rect x="254" y="118" width="22" height="12" /><text x="265" y="126.8">03</text></g>
+        </g>
+
+        <g class="device-labels" font-size="12" text-anchor="middle">
+          <text x="130" y="192" fill="currentColor">Windows PC</text>
+          <text class="sub" x="130" y="207">display 1</text>
+          <text x="405" y="150" fill="currentColor">Android tablet</text>
+          <text class="sub" x="405" y="165">display 2</text>
+          <text class="sub" x="297" y="174">local Wi-Fi</text>
+        </g>
+      </svg>
+      <ol class="figure-notes">
+        <li><span class="note-n">01</span><p>Windows sees another monitor, so I can drag windows onto the tablet and draw or tap with my pen.</p></li>
+        <li><span class="note-n">02</span><p>Frames stay on the GPU through hardware encoding, then stream over WebRTC to Android’s hardware decoder.</p></li>
+        <li><span class="note-n">03</span><p>Touch and pen strokes travel back over TLS and are injected as native Windows pen input with pressure, not simulated mouse clicks.</p></li>
+      </ol>
+  </figure>
+</section>
 
 <style>
-  .release-label {font:11px/1.5 'IBM Plex Mono',monospace;letter-spacing:.04em;margin-bottom:14px;}
-  .display-diagram {display:block;width:100%;height:auto;margin:18px 0 6px;overflow:visible;}
-  .device-labels {font:11px 'IBM Plex Mono',monospace;}
-  .video-layer,.input-layer {opacity:.4;transition:opacity .2s ease;}
-  [data-stage="video"] .video-layer,[data-stage="input"] .input-layer {opacity:1;}
-  .stream-stages {display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-bottom:15px;}
-  .stream-stages button {min-height:44px;padding:7px 3px;border:1px solid currentColor;background:transparent;color:inherit;font:11px/1.5 'IBM Plex Mono',monospace;}
-  .stream-stages button[aria-pressed="true"] {background:var(--on-accent);color:var(--accent);border-color:var(--on-accent);}
-  @media(hover:hover) {.stream-stages button:hover {text-decoration:underline;text-underline-offset:4px;}}
-  :global(.site-shell) .stream-caption {font:11px/1.6 'IBM Plex Mono',monospace;min-height:6.4em;margin-bottom:10px;}
-  @media(prefers-reduced-motion:reduce) {.video-layer,.input-layer {transition:none;}}
-</style>
-
-<script>
-  const board = document.querySelector<HTMLElement>('.secondscrn-study');
-  if (board) {
-    const buttons = [...board.querySelectorAll<HTMLButtonElement>('.stream-stages button')];
-    const caption = board.querySelector('#stream-caption');
-    const captions: Record<string, string> = {
-      display: 'Windows sees another monitor. I can drag a window onto the tablet and keep working with my pen.',
-      video: 'The pixels stay on the GPU until they become compressed video. WebRTC carries them to the tablet’s hardware decoder.',
-      input: 'A pen stroke takes the return trip over TLS. Windows receives pen input, including pressure, rather than just a mouse click.',
-    };
-    buttons.forEach(button => button.addEventListener('click', () => {
-      const stage = button.dataset.stage;
-      if (!stage || !captions[stage]) return;
-      board.dataset.stage = stage;
-      buttons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
-      if (caption) caption.textContent = captions[stage];
-    }));
+  .feature {display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);border:1px solid var(--ink);}
+  .feature-text {display:flex;flex-direction:column;gap:12px;padding:26px;border-right:1px solid var(--ink);}
+  .release-label {display:flex;align-items:center;gap:10px;font:12.5px/1.5 var(--mono);color:var(--quiet);}
+  .feature h3 {font-size:36px;line-height:1.05;}
+  .feature p {color:var(--quiet);font-size:16px;max-width:46ch;}
+  .feature .spec {margin-top:auto;}
+  .feature-links {display:flex;flex-wrap:wrap;gap:8px 22px;}
+  .feature-figure {display:flex;flex-direction:column;min-width:0;}
+  .display-diagram {display:block;width:100%;height:auto;padding:22px 22px 12px;overflow:visible;font-family:var(--mono);}
+  .display-diagram .screen {fill:var(--panel);}
+  .display-diagram .window-body {fill:var(--paper);}
+  .display-diagram .title {fill:var(--yellow);}
+  .display-diagram .pen {fill:var(--paper);}
+  .display-diagram .taskbar,.display-diagram .virtual {opacity:.6;}
+  .callouts rect {fill:var(--yellow);stroke:var(--on-yellow);stroke-width:1;}
+  .callouts text {fill:var(--on-yellow);}
+  .device-labels .sub {fill:var(--quiet);}
+  .flow {stroke-dasharray:6 4;}
+  .flow-back {stroke-dasharray:3 3;}
+  @media(prefers-reduced-motion:no-preference) {
+    .flow {animation:ss-flow 1s linear infinite;}
+    .flow-back {animation-name:ss-flow-back;animation-duration:.6s;}
   }
-</script>
+  @keyframes ss-flow {to {stroke-dashoffset:-10;}}
+  /* One loop must move exactly one dash period (3+3), or the line jumps on repeat. */
+  @keyframes ss-flow-back {to {stroke-dashoffset:-6;}}
+  .figure-notes {list-style:none;margin:auto 0 0;padding:0;border-top:1px solid var(--ink);}
+  .figure-notes li {display:grid;grid-template-columns:28px minmax(0,1fr);gap:12px;align-items:baseline;padding:9px 14px;border-top:1px solid var(--line);}
+  .figure-notes li:first-child {border-top:0;}
+  .note-n {background:var(--yellow);color:var(--on-yellow);font:11px/1.6 var(--mono);text-align:center;}
+  .feature .figure-notes p {max-width:none;font-size:13.5px;line-height:1.5;color:var(--quiet);}
+  @media(max-width:960px) {
+    .feature {grid-template-columns:1fr;}
+    .feature-text {border-right:0;border-bottom:1px solid var(--ink);}
+  }
+  @media(max-width:680px) {
+    .feature-text {padding:20px;}
+    .feature h3 {font-size:30px;}
+    .display-diagram {padding:16px 12px 8px;}
+    .figure-notes li {padding:9px 12px;}
+  }
+</style>

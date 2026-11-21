@@ -3,38 +3,72 @@ import Layout from '../layouts/Layout.astro';
 import SecondScrnStudy from '../components/SecondScrnStudy.astro';
 import ProjectFeature from '../components/ProjectFeature.astro';
 import { getProjects, getNotes } from '../lib/content';
+import { liveProjects } from '../data/live-projects';
 const projects = await getProjects();
 const notes = await getNotes();
+// SecondScrn has its own panel. Cards with screenshots lead so the grid doesn't open on a row of text.
+const featured = projects
+  .filter(p => p.data.featured && p.id !== 'secondscrn')
+  .sort((a, b) => Number(!a.data.image) - Number(!b.data.image) || a.data.order - b.data.order);
+const others = projects.filter(p => !p.data.featured);
+const facts = [
+  ['Work', 'Software developer (Werkstudent), 5 years'],
+  ['Core stack', 'C# / .NET, TypeScript (Angular, Vue, React), SQL'],
+  ['Tooling', 'Azure DevOps, Playwright, Vitest, legacy VB6'],
+  ['Education', "M.Sc. Applied CS (in progress) · B.Sc. CS"],
+  ['Focus', 'End-to-end ownership, UI/UX, DX tooling, AI-assisted delivery'],
+];
 ---
 <Layout title="niposch">
   <section class="hero" aria-labelledby="intro-title">
     <div>
-      <h1 id="intro-title">Hi,<br />I'm Nick.</h1>
-      <div class="hero-copy">
-        <p>I've been developing software professionally for five years alongside my studies, mostly with .NET and Angular.</p>
-        <p>I'm now working towards my master's. Here are some projects I work on and use myself.</p>
+      <h1 id="intro-title">Hi, I'm Nick.</h1>
+      <p>I'm a software developer based in Germany, finishing my master's in Applied Computer Science. Outside of day-job .NET and Angular work, I build desktop tools, browser apps, and the occasional game.</p>
+      <p>Most of what's here started because something on my desk annoyed me enough to build my own fix, often working with coding agents to move quickly across stacks.</p>
+      <div class="button-row">
+        <a class="button primary" href="/live/">Try live projects ↗</a>
+        <a class="button" href="#projects">Projects ↓</a>
+        <a class="button" href="https://github.com/niposch" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
       </div>
-      <div class="hero-links"><a class="intro-link" href="/live/">Try live projects ↗</a><a class="intro-link" href="#projects">Projects ↓</a></div>
     </div>
-    <SecondScrnStudy />
+    <dl class="facts" aria-label="At a glance">
+      {facts.map(([term, detail]) => <div><dt>{term}</dt><dd>{detail}</dd></div>)}
+    </dl>
   </section>
+
   <section id="projects" aria-labelledby="projects-title">
-    <div class="section-heading"><h2 id="projects-title">Projects</h2></div>
-    {projects.filter(p => p.data.featured).map(project => <ProjectFeature project={project} />)}
-    <div class="other-work"><span>Other projects:</span>{projects.filter(p => !p.data.featured).map(project => <a href={`/projects/${project.id}/`}>{project.data.title}{project.data.status === 'In progress' ? ' (in progress)' : ''} ↗</a>)}</div>
+    <div class="section-head"><h2 id="projects-title">Projects</h2><a href="/projects/">All projects ↗</a></div>
+    <SecondScrnStudy />
+    <div class="card-grid">
+      {featured.map(project => <ProjectFeature project={project} />)}
+    </div>
+    {others.length > 0 && <div class="other-work"><span>Other projects:</span>{others.map(project => <a href={`/projects/${project.id}/`}>{project.data.title}{project.data.status === 'In progress' ? ' (in progress)' : ''} ↗</a>)}</div>}
   </section>
-  <div class="notes-about">
+
+  <section aria-labelledby="live-title">
+    <div class="section-head"><h2 id="live-title">Try in the browser</h2><a href="/live/">All live projects ↗</a></div>
+    <div class="live-table">
+      {liveProjects.slice(0, 4).map(project => <div class="live-row">
+        <strong><a href={project.href}>{project.title}</a></strong>
+        <span class="kind">{project.kind}</span>
+        <p>{project.description}</p>
+        <a class="text-link" href={project.href}>{project.action} ↗</a>
+      </div>)}
+    </div>
+  </section>
+
+  <div class="split">
     <section aria-labelledby="notes-title">
-      <h2 id="notes-title"><a href="/notes/">Notes</a></h2>
-      <div class="note-list">
-        {notes.map(note => <article><h3 class="note-title"><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3><p>{note.data.summary}</p>{note.data.draft && <span class="draft-label">Draft preview</span>}</article>)}
-      </div>
+      <div class="section-head"><h2 id="notes-title">Notes</h2><a href="/notes/">All notes ↗</a></div>
+      {notes.map(note => <article class="note-row"><h3><a href={`/notes/${note.id}/`}>{note.data.title}</a></h3><p>{note.data.summary}</p>{note.data.draft && <span class="draft-label">Draft preview</span>}</article>)}
     </section>
-    <section class="about" aria-labelledby="about-title">
-      <h2 id="about-title"><a href="/about/">About me</a></h2>
-      <p>I work as a software developer alongside my studies—a Werkstudent. I have a bachelor's degree and am currently working towards a master's.</p>
-      <p>My professional work has mostly involved .NET, Angular, and VB6, with Azure DevOps for pipelines and Playwright and Vitest for testing.</p>
-      <a class="intro-link" href="/about/">More about me ↗</a>
+    <section aria-labelledby="about-title">
+      <div class="section-head"><h2 id="about-title">About me</h2></div>
+      <div class="about-block">
+        <p>I enjoy owning software end to end: integrating new features into existing or legacy systems without breaking what works, and making enterprise tools genuinely pleasant to use.</p>
+        <p>I lean heavily on developer tooling and AI coding agents both at work and on the side projects here, focusing on UX, solid foundations, and real testing so things hold up in daily use.</p>
+        <a class="text-link" href="/about/">More about me ↗</a>
+      </div>
     </section>
   </div>
 </Layout>
